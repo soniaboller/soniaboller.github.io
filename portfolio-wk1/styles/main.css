@@ -1,0 +1,191 @@
+/*general page properties*/
+
+html, body, p, h1, h2 {
+    padding: 0;
+    margin: 0;
+}
+
+html {
+    font-size: 1vw;
+}
+
+body {
+    font-size: 16px;
+    background-color: rgb(8, 14, 53);
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    font-family: 'Open Sans', Helvetica, sans-serif;
+}
+
+p {
+    text-align: center;
+    letter-spacing: 0.25em;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+
+a {
+    text-decoration: none;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+h1 {
+    font-family: 'Raleway Dots', Helvetica, sans-serif;
+    letter-spacing: 2rem;
+    font-weight: 200;
+    padding: 25% 10% 1% 10%;
+    margin: 0;
+    font-size: 5em;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+h2 {
+    font-family: 'Open Sans', Helvetica, sans-serif;
+    font-size: 2rem;
+    letter-spacing: 0.5rem;
+    font-weight: 100;
+    margin: 0;
+    color: rgba(255, 255, 255, 0.2);
+}
+
+/* top fixed nav bar*/
+
+nav {
+    position: fixed;
+    background-color: rgba(40, 40, 40, 0.55);
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    font-family: 'Open Sans', Helvetica, sans-serif;
+    font-weight: 100;
+    letter-spacing: 0.25rem;
+    z-index: 1; /*prevents fade when scrolling over other things that alter opacity*/
+}
+
+ul {
+    padding: 0;
+}
+ul li {
+    display: inline;
+    text-decoration: none;
+}
+
+nav ul li a {
+    color: #9f9f9f;
+    margin: 5%;
+    padding: 1.25% 2% 1.25% 2%;
+    font-size: 1.25rem;
+}
+
+nav ul li a:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+/*about*/
+
+#bio {
+    padding: 25% 1% 0 1%;
+    font-size: 1.25rem;
+    line-height: 2.25rem;
+}
+
+/*portfolio*/
+
+.portfolio-squares {
+    width: 75%;
+    border: #b8b8b8 solid 5px;
+    padding: 1%;
+    margin: 10%;
+    float:left;
+    opacity: 0.85;
+}
+
+.portfolio-squares:hover {
+    opacity: 0.45;
+    -webkit-transition: opacity 400ms;
+    -moz-transition: opacity 400ms;
+    -o-transition: opacity 400ms;
+    transition: opacity 400ms;
+}
+
+section.img-wrap {
+    width: 33%;
+    position: relative;
+    float: left;
+    margin: 13% 0 0 0;
+}
+
+p.img-desc {
+    position: absolute;
+    top: 80%;
+    width: 100%;
+    color: #dadada;
+    visibility: hidden;
+    background-color: rgba(255, 255, 255, 0);
+    opacity:0;
+    font-size: 1.25rem;
+}
+
+/* can you on:hover on .portfolio-squares rather than creating a section wrap tag?*/
+
+
+section.img-wrap:hover  p.img-desc {
+    visibility: visible;
+    opacity: 1;
+}
+
+/*footer*/
+
+#social-media {
+    padding: 25% 25% 0 25%;
+    margin: 0;
+    color: #fff;
+}
+
+footer {
+    text-align: center;
+    font-size: 1.25rem;
+    padding-top: 22%;
+}
+
+/*slide pages */
+.full-page-slide {
+    width: 100%;
+    height: 740px;
+}
+
+#home {
+    background-color: rgb(8, 14, 53);
+}
+
+#about {
+    background-color: rgb(27, 14, 53);
+}
+
+#portfolio {
+    background-color: rgb(39, 13, 53);
+}
+
+#contact {
+    background-color: rgb(53, 10, 53);
+}
+
+.social-icon {
+    width: 5%;
+    padding: 0 2% 0 2%;
+    opacity:0.85;
+}
+
+.social-icon:hover {
+    opacity: 1;
+
+}
+
+/* mobile specs */
+@media (max-width: 500px) {
+    ul li {
+        display: block;
+    }
+
+}
