@@ -1,0 +1,24 @@
+body {
+  font-size: 16px;
+  background-color: #c9c9c9; }
+
+h1 {
+  font-size: 3rem;
+  font-family: "Helvetica", "Arial", sans-serif;
+  color: #4e2959; }
+
+h2 {
+  font-size: 1.5rem;
+  font-family: "Helvetica", "Arial", sans-serif;
+  color: #655f8a; }
+
+h3 {
+  font-size: 0.75rem;
+  font-family: "Helvetica", "Arial", sans-serif;
+  color: #15133f; }
+
+p {
+  font-size: 1rem;
+  font-family: "Helvetica", "Arial", sans-serif; }
+
+/*# sourceMappingURL=main.css.map */
