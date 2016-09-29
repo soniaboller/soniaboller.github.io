@@ -1,0 +1,83 @@
+body {
+    background: linear-gradient(180deg, #fff, #737373);
+    font-family: 'Poiret One', Helvetica, sans-serif;
+}
+
+.container {
+    margin: 3rem auto;
+}
+
+.logo {
+    font-weight: 900;
+    font-family: 'Poiret One', Helvetica, sans-serif;
+    letter-spacing: 1rem;
+}
+
+.row {
+    margin: 0 0 1% 0;
+}
+
+h2 {
+    font-size: 4rem;
+    padding: 1rem;
+    letter-spacing: 0.5rem;
+    font-weight: 900;
+    font-family: 'Poiret One', Helvetica, sans-serif;
+}
+
+p {
+    font-size: 3rem;
+    border: 1px solid #222222;
+}
+
+h6 {
+    letter-spacing: 0.25rem;
+    margin: 4% 0;
+}
+
+.user-profile-bar {
+    background-color: #737373;
+    opacity: 0.8;
+    color: #fff;
+    margin: 2rem 0;
+    padding: 2rem;
+    letter-spacing: 1.25rem;
+    font-size: 1.5rem;
+    text-align: center;
+}
+
+#btn{
+    border: solid 1px #737373;
+}
+
+#btn:hover {
+    border: solid 1px #d3d3d3;
+}
+
+.right-align{
+    text-align: right;
+}
+
+.center-align {
+    text-align: center;
+}
+
+.left-align {
+    text-align: left;
+    margin-left: 2%;
+}
+
+input {
+    width: 100%;
+    margin: 2rem 0;
+}
+
+.center {
+    text-align: center;
+}
+
+.story {
+    font-family: 'Raleway', sans-serif;
+    font-weight: 100;
+    font-size: 3rem;
+}
