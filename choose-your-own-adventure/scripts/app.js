@@ -211,21 +211,3 @@ var chapters = {
         }
     }
 };
-alaskan
-alaskan.bird
-
-function loopObject(someObject){
-
-
-    for prop in someObject{
-
-    }
-
-}
-
-
-function Bird(name, wings, color){
-    this.name = name,
-    this.wings = wings,
-    this.color = color
-}
