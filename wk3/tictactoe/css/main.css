@@ -1,14 +1,14 @@
-@font-face {
-  font-family: 'Gotham Bold';
-  src: url('https://rozon.org/fonts/Gotham-Bold.eot'); /* IE9 Compat Modes */
-  src: url('https://rozon.org/fonts/Gotham-Bold?#iefix') format('embedded-opentype'), /* IE6-IE8 */
-  url('https://rozon.org/fonts/Gotham-Bold.woff') format('woff'), /* Pretty Modern Browsers */
-  url('https://rozon.org/fonts/Gotham-Bold.ttf')  format('truetype'), /* Safari, Android, iOS */
-  url('https://rozon.org/Gotham-Bold.svg#svgFontName') format('svg'); /* Legacy iOS */
-}
+/*@font-face {*/
+  /*font-family: 'Gotham Bold';*/
+  /*src: url('https://rozon.org/fonts/Gotham-Bold.eot'); !* IE9 Compat Modes *!*/
+  /*src: url('https://rozon.org/fonts/Gotham-Bold?#iefix') format('embedded-opentype'), !* IE6-IE8 *!*/
+  /*url('https://rozon.org/fonts/Gotham-Bold.woff') format('woff'), !* Pretty Modern Browsers *!*/
+  /*url('https://rozon.org/fonts/Gotham-Bold.ttf')  format('truetype'), !* Safari, Android, iOS *!*/
+  /*url('https://rozon.org/Gotham-Bold.svg#svgFontName') format('svg'); !* Legacy iOS *!*/
+/*}*/
 
 body {
-  font-family: 'Gotham Bold', sans-serif;
+  font-family: Helvetica, sans-serif;
   color: white;
   background-color: #02266C;
   margin-top: 50px;
@@ -37,7 +37,8 @@ body {
 #winner-box {
   font-size: 3rem;
   text-align: center;
-  font-family: 'Gotham Bold', sans-serif;
+  font-family: Helvetica, sans-serif;
+  font-weight: 900;
   letter-spacing: 1rem;
   margin: 1%;
   margin-top: 20px;
