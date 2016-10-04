@@ -8,7 +8,7 @@
 }
 
 body {
-  font-family: "Gotham Bold", sans-serif;
+  font-family: 'Gotham Bold', sans-serif;
   color: white;
   background-color: #02266C;
   margin-top: 50px;
@@ -37,7 +37,7 @@ body {
 #winner-box {
   font-size: 3rem;
   text-align: center;
-  font-family: "Gotham Bold", sans-serif;
+  font-family: 'Gotham Bold', sans-serif;
   letter-spacing: 1rem;
   margin: 1%;
   margin-top: 20px;
