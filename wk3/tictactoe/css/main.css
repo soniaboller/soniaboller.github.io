@@ -1,5 +1,14 @@
+@font-face {
+  font-family: 'Gotham Bold';
+  src: url('http://rozon.org/fonts/Gotham-Bold.eot'); /* IE9 Compat Modes */
+  src: url('http://rozon.org/fonts/Gotham-Bold?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('http://rozon.org/fonts/Gotham-Bold.woff') format('woff'), /* Pretty Modern Browsers */
+  url('http://rozon.org/fonts/Gotham-Bold.ttf')  format('truetype'), /* Safari, Android, iOS */
+  url('http://rozon.org/Gotham-Bold.svg#svgFontName') format('svg'); /* Legacy iOS */
+}
+
 body {
-  font-family: "Open Sans", "Helvetica", sans-serif;
+  font-family: "Gotham Bold", sans-serif;
   color: white;
   background-color: #02266C;
   margin-top: 50px;
@@ -28,10 +37,22 @@ body {
 #winner-box {
   font-size: 3rem;
   text-align: center;
-  font-family: "Open Sans", "Helvetica", sans-serif;
+  font-family: "Gotham Bold", sans-serif;
   letter-spacing: 1rem;
   margin: 1%;
-  font-weight: 900;
+  margin-top: 20px;
+  line-height: 4rem;
+}
+
+#reset {
+  color: #02266C;
+  background-color: #ffffff;
+  border: none;
+}
+
+#reset:hover {
+  background-color: #BB112E;
+  border: none;
 }
 
 /* Larger than mobile */

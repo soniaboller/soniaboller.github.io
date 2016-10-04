@@ -1,338 +1,298 @@
 var gameBoard = [[null, null, null],
-                 [null, null, null],
-                 [null, null, null]];
-var turn = 1;
-var hillaryImage = '<img src = "images/clinton.svg" class = "clinton" />'; 
-var trumpImage = '<img src = "images/trump.svg" class = "trump" />';
+    [null, null, null],
+    [null, null, null]];
+var turn = 0;
+var hillaryImage = '<img src = http://www.fullredneck.com/wp-content/uploads/2016/03/Funny-Hillary-Clinton-Jokes.jpg>';
+var trumpImage = '<img src =http://i.imgur.com/H61u8Lj.jpg>';
 
 // listen for click on boxes, loop through
 
-var resetGame = function() {
-    $('#reset').one("click", function(){
-        location.reload();
-    })
-};
-
-var trumpWins = function () {
-    $('#winner-box').html("TRUMP WINS");
-    $('#winner-box').append("<button id='reset'>PLAY AGAIN!?</button>");
-    return true;
-};
-
-var clintonWins = function () {
-    $('#winner-box').html("HALLELUJAH HILLDAWG WINS");
-    $('#winner-box').append("<button id='reset'>PLAY AGAIN!?</button>");
-    return true;
-};
-
 var gamePlay = function (){
-    $('#boxA').one("click", function(){
+    $('#boxA').click(function(){
         if(turn % 2 === 0){
             $('#boxA').append(trumpImage);
+            var input = "trump"; // just to keep track of who is who in console.log -- we can remove this later
+            console.log(input);
             gameBoard[0][0] = 0;
             console.log("box A is " + gameBoard[0][0]);
         }
         else {
             $('#boxA').append(hillaryImage);
+            var input = "clinton"; // just to keep track of who is who in console.log -- we can remove this later
+            console.log(input);
             gameBoard[0][0] = 1;
             console.log("box A is " + gameBoard[0][0]);
         }
         turn++;
-        checkTie();
-        checkRowWinner();
-        checkColumnWinner();
-        checkDiagonalWinner();
+        checkWinner();
     });
-    $('#boxB').one("click", function(){
+    $('#boxB').click(function(){
         if(turn % 2 === 0){
             $('#boxB').append(trumpImage);
+            var input = "trump"; // just to keep track of who is who in console.log -- we can remove this later
+            console.log(input);
             gameBoard[0][1] = 0;
             console.log("box B is " + gameBoard[0][1]);
         }
         else {
             $('#boxB').append(hillaryImage);
+            var input = "clinton"; // just to keep track of who is who in console.log -- we can remove this later
+            console.log(input);
             gameBoard[0][1] = 1;
             console.log("box B is " + gameBoard[0][1]);
         }
         turn++;
-        checkTie();
-        checkRowWinner();
-        checkColumnWinner();
-        checkDiagonalWinner();
+        checkWinner();
     });
-    $('#boxC').one("click", function(){
+    $('#boxC').click(function(){
         if(turn % 2 === 0){
             $('#boxC').append(trumpImage);
+            var input = "trump"; // just to keep track of who is who in console.log -- we can remove this later
+            console.log(input);
             gameBoard[0][2] = 0;
             console.log("box C is " + gameBoard[0][2]);
 
         }
         else {
             $('#boxC').append(hillaryImage);
+            var input = "clinton"; // just to keep track of who is who in console.log -- we can remove this later
+            console.log(input);
             gameBoard[0][2] = 1;
             console.log("box C is " + gameBoard[0][2]);
         }
         turn++;
-        checkTie();
-        checkRowWinner();
-        checkColumnWinner();
-        checkDiagonalWinner();
+        checkWinner();
     });
-    $('#boxD').one("click", function(){
+    $('#boxD').click(function(){
         if(turn % 2 === 0){
             $('#boxD').append(trumpImage);
+            var input = "trump"; // just to keep track of who is who in console.log -- we can remove this later
+            console.log(input);
             gameBoard[1][0] = 0;
             console.log("box D is " + gameBoard[1][0]);
 
         }
         else {
             $('#boxD').append(hillaryImage);
+            var input = "clinton"; // just to keep track of who is who in console.log -- we can remove this later
+            console.log(input);
             gameBoard[1][0] = 1;
             console.log("box D is " + gameBoard[1][0]);
         }
         turn++;
-        checkTie();
-        checkRowWinner();
-        checkColumnWinner();
-        checkDiagonalWinner();
+        checkWinner();
     });
-    $('#boxE').one("click", function(){
+    $('#boxE').click(function(){
         if(turn % 2 === 0){
             $('#boxE').append(trumpImage);
+            var input = "trump"; // just to keep track of who is who in console.log -- we can remove this later
+            console.log(input);
             gameBoard[1][1] = 0;
             console.log("box E is " + gameBoard[1][1]);
 
         }
         else {
             $('#boxE').append(hillaryImage);
+            var input = "clinton"; // just to keep track of who is who in console.log -- we can remove this later
+            console.log(input);
             gameBoard[1][1] = 1;
             console.log("box E is " + gameBoard[1][1]);
         }
         turn++;
-        checkTie();
-        checkRowWinner();
-        checkColumnWinner();
-        checkDiagonalWinner();
+        checkWinner();
     });
-    $('#boxF').one("click", function(){
+    $('#boxF').click(function(){
         if(turn % 2 === 0){
             $('#boxF').append(trumpImage);
+            var input = "trump"; // just to keep track of who is who in console.log -- we can remove this later
+            console.log(input);
             gameBoard[1][2] = 0;
             console.log("box F is "+ gameBoard[1][2]);
 
         }
         else {
             $('#boxF').append(hillaryImage);
+            var input = "clinton"; // just to keep track of who is who in console.log -- we can remove this later
+            console.log(input);
             gameBoard[1][2] = 1;
             console.log("box F is "+ gameBoard[1][2]);
         }
         turn++;
-        checkTie();
-        checkRowWinner();
-        checkColumnWinner();
-        checkDiagonalWinner();
+        checkWinner();
     });
-    $('#boxG').one("click", function(){
+    $('#boxG').click(function(){
         if(turn % 2 === 0){
             $('#boxG').append(trumpImage);
+            var input = "trump"; // just to keep track of who is who in console.log -- we can remove this later
+            console.log(input);
             gameBoard[2][0] = 0;
             console.log("box G is "+ gameBoard[2][0]);
 
         }
         else {
             $('#boxG').append(hillaryImage);
+            var input = "clinton"; // just to keep track of who is who in console.log -- we can remove this later
+            console.log(input);
             gameBoard[2][0] = 1;
             console.log("box G is "+ gameBoard[2][0]);
         }
         turn++;
-        checkTie();
-        checkRowWinner();
-        checkColumnWinner();
-        checkDiagonalWinner();
+        checkWinner();
     });
-    $('#boxH').one("click", function(){
+    $('#boxH').click(function(){
         if(turn % 2 === 0){
             $('#boxH').append(trumpImage);
+            var input = "trump"; // just to keep track of who is who in console.log -- we can remove this later
+            console.log(input);
             gameBoard[2][1] = 0;
             console.log("box H is "+ gameBoard[2][1]);
 
         }
         else {
             $('#boxH').append(hillaryImage);
+            var input = "clinton"; // just to keep track of who is who in console.log -- we can remove this later
+            console.log(input);
             gameBoard[2][1] = 1;
             console.log("box H is "+ gameBoard[2][1]);
         }
         turn++;
-        checkTie();
-        checkRowWinner();
-        checkColumnWinner();
-        checkDiagonalWinner();
+        checkWinner();
     });
-    $('#boxI').one("click", function(){
+    $('#boxI').click(function(){
         if(turn % 2 === 0){
             $('#boxI').append(trumpImage);
+            var input = "trump"; // just to keep track of who is who in console.log -- we can remove this later
+            console.log(input);
             gameBoard[2][2] = 0;
             console.log("box I is "+ gameBoard[2][2]);
 
         }
         else {
             $('#boxI').append(hillaryImage);
+            var input = "clinton"; // just to keep track of who is who in console.log -- we can remove this later
+            console.log(input);
             gameBoard[2][2] = 1;
             console.log("box I is "+ gameBoard[2][2]);
         }
         turn++;
-        checkTie();
-        checkRowWinner();
-        checkColumnWinner();
-        checkDiagonalWinner();
+        checkWinner();
     });
 };
 
-// var checkWinner = function(){
-//     checkRowWinner();
-//     //checkRowWinner2();
-//     checkColumnWinner();
-//     checkDiagonalWinner();
-//     if (checkRowWinner() === true || checkColumnWinner() === true || checkDiagonalWinner() === true){
-//         alert('trump wins, aHALP!');//
-//     }
-//     else if (checkRowWinner() === false || checkColumnWinner() === false || checkDiagonalWinner() === false){
-//         alert('clinton wins thank gawWwwd!!');
-//     }
-//     // else {
-//     //     alert('kanye for prezzzz');
-//     // }
-// };
+var checkWinner = function(){
+    checkRowWinner();
+    // checkRowWinner2();
+    checkColumnWinner();
+    checkDiagonalWinner();
+    if (checkRowWinner() === true || checkColumnWinner() === true || checkDiagonalWinner() === true){
+        alert('trump wins, HALP!');
+    }
+    else if (checkRowWinner() === false || checkColumnWinner() === false || checkDiagonalWinner() === false){
+        alert('clinton wins thank gawwwd!!');
+    }
+    // else {
+    //     alert('kanye for prezzzz');
+    // }
+};
 
 gamePlay();
 checkRowWinner = function(){
     if (gameBoard[0][0] === 0  && gameBoard[0][1] === 0 && gameBoard [0][2] === 0){
         console.log('0 wins row 1');
-        trumpWins();
+        return true;
     }
-    else if (gameBoard[0][0] === 1  && gameBoard[0][1] === 1 && gameBoard [0][2] === 1){
+    else if (gameBoard[0][0] === 1  && gameBoard[0][1] === 1 && gameBoard [0][1] === 1){
         console.log('1 wins row 1');
-        clintonWins();
+        return false;
     }
     else if (gameBoard[1][0] === 0  && gameBoard[1][1] === 0 && gameBoard [1][2] === 0){
         console.log('0 wins row 2');
-        trumpWins();
+        return true;
     }
     else if (gameBoard[1][0] === 1  && gameBoard[1][1] === 1 && gameBoard [1][2] === 1){
         console.log('1 wins row 2');
-        clintonWins();
+        return false;
     }
     else if (gameBoard[2][0] === 0  && gameBoard[2][1] === 0 && gameBoard [2][2] === 0){
         console.log('0 wins row 3');
-        trumpWins();
+        return true;
     }
     else if (gameBoard[2][0] === 1  && gameBoard[2][1] === 1 && gameBoard [2][2] === 1){
         console.log('1 wins row 3');
-        clintonWins();
+        return false;
     }
     else {
         console.log('no row winner');
     }
-    resetGame();
 };
 
-// var checkRowWinner2 = function () {
-//     for (var i = 0; i < gameBoard.length; i++){
-//         if (gameBoard[i][0] === 0 && gameBoard[i][1] === 0 && gameBoard[i][2] === 0){
-//                 console.log('0 wins row');
-//         }
-//         else if (gameBoard[i][0] === 1 && gameBoard[i][1] === 1 && gameBoard[i][2] === 1){
-//             console.log('1 wins row');
-//         }
-//         else {
-//             console.log('no row winner');
-//         }
-//     }
-// };
+var checkRowWinner2 = function () {
+    for (var i = 0; i < gameBoard.length; i++){
+        if (gameBoard[i][0] === 0 && gameBoard[i][1] === 0 && gameBoard[i][2] === 0){
+            console.log('0 wins row');
+        }
+        else if (gameBoard[i][0] === 1 && gameBoard[i][1] === 1 && gameBoard[i][2] === 1){
+            console.log('1 wins row');
+        }
+        else {
+            console.log('no row winner');
+        }
+    }
+};
+
+
 
 var checkColumnWinner = function(){
     if (gameBoard[0][0] === 0  && gameBoard[1][0] === 0 && gameBoard [2][0] === 0){
         console.log('0 wins column1');
-        trumpWins();
+        return true;
     }
     else if (gameBoard[0][0] === 1  && gameBoard[1][0] === 1 && gameBoard [2][0] === 1){
         console.log('1 wins column1');
-        clintonWins();
+        return false;
     }
     else if (gameBoard[0][1] === 0  && gameBoard[1][1] === 0 && gameBoard [2][1] === 0){
         console.log('0 wins column2');
-        trumpWins();
+        return true;
     }
     else if (gameBoard[0][1] === 1  && gameBoard[1][1] === 1 && gameBoard [2][1] === 1){
         console.log('1 wins column2');
-        clintonWins();
+        return false;
     }
     else if (gameBoard[0][2] === 0  && gameBoard[1][2] === 0 && gameBoard [2][2] === 0){
         console.log('0 wins column3');
-        trumpWins();
+        return true;
     }
     else if (gameBoard[0][2] === 1  && gameBoard[1][2] === 1 && gameBoard [2][2] === 1){
         console.log('1 wins column3');
-        clintonWins();
+        return false;
     }
     else {
         console.log('no column winner');
     }
-    resetGame();
 };
 
 var checkDiagonalWinner = function(){
     if (gameBoard[0][0] === 0  && gameBoard[1][1] === 0 && gameBoard [2][2] === 0){
         console.log('0 wins diagonal left');
-        trumpWins();
+        return true;
     }
     else if (gameBoard[0][0] === 1 && gameBoard[1][1] === 1 && gameBoard [2][2] === 1){
         console.log('1 wins diagonal left');
-        clintonWins();
+        return false;
     }
     else if (gameBoard[0][2] === 0 && gameBoard[1][1] === 0 && gameBoard [2][0] === 0){
         console.log('0 wins diagonal right');
-        trumpWins();
+        return true;
     }
     else if (gameBoard[0][2] === 1 && gameBoard[1][1] === 1 && gameBoard [2][0] === 1){
         console.log('0 wins diagonal right');
-        clintonWins();
+        return false;
     }
     else {
         console.log('no diagonal winner');
     }
-    resetGame();
 };
 
-var boardSum = function(){
-    var row1 = 0;
-    var row2 = 0;
-    var row3 = 0;
-    for (var i = 0; i < gameBoard.length; i++){
-        row1 += gameBoard[i][0];
-        row2 += gameBoard[i][1];
-        row3 += gameBoard[i][2];
-    }
-    var sum = (row1 + row2 + row3);
-    return sum;
-    console.log(sum);
-};
 
-var checkTie = function(){
-    if((boardSum() === 5)){
-        $('#winner-box').html("AMERICA WINS!!<br/>");
-        $('#winner-box').append("<button id='reset'>PLAY AGAIN!?</button>");
-    }
-    resetGame();
-};
 
-// var boardSum = function(){
-//     for (var i = 0; i < gameBoard.length; i++) {
-//         for (var j = 0; j < gameBoard.length; j++){
-//             var position =+ gameBoard[i][j];
-//             console.log('this is position '+ position);
-//         }
-//         var position =+ gameBoard[i][j];
-//         console.log('this is position '+ position);
-//     }
-// };
