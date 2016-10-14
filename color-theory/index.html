@@ -1,0 +1,50 @@
+<html>
+    <head>
+        <title>Color Theory</title>
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+        <link href="styles/main.css" type="text/css" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet">
+    </head>
+    <body>
+        <div id="body-wrap">
+            <div class="container">
+                <button class="color-button" id="blue"> BLUE </button>
+                <button class="color-button"  id="red"> RED </button>
+                <button class="color-button"  id="green"> GREEN </button>
+                <button id="start"> BEGIN </button>
+                <p id="instructions">
+                    nine levels, 20 seconds each <br>
+                    gain points by clicking on the darker boxes sandwiched in between two lighter ones <br>
+                    <em id="emphasis"> (press 'p' to pause the game)</em>
+                </p>
+            </div>
+            <div id ="page-wrap">
+                <div id="next-level">
+                    <p> LEVEL : </p>
+                </div>
+            </div>
+            <div id="modal">
+                <div id="paused">
+                    <h2>~ PAUSED ~</h2>
+                    <h2>press 'p' to continue playing</h2>
+                </div>
+                <div id="gameover-modal">
+                    <h1 id="gameover"> GAME OVER </h1>
+                    <input type="text" placeholder="enter your name" id="name-input" autofocus="autofocus">
+                    <h6 id="finalscore">SCORE : </h6>
+                </div>
+                <div id="scoreboard-modal">
+                    <div id="scoreboard-container"></div>
+                </div>
+            </div>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.js"></script>
+    <script type="text/javascript" src="scripts/d3/d3.js"></script>
+    <script src="scripts/velocity.js"></script>
+    <script src="scripts/app.js"></script>
+    <script src="scripts/boxClick.js"></script>
+    <script src="scripts/levelChange.js"></script>
+    <script src ="scripts/colorFunctions.js"></script>
+    <script src="scripts/animationLoop.js"></script>
+    <script src="scripts/scoreboard.js"></script>
+    </body>
+</html>

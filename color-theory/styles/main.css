@@ -1,0 +1,296 @@
+p, body, header {
+    margin: 0;
+}
+
+header, span{
+    display: none;
+}
+html, p, body, header, h1, h2, h3, h4, h5, h6, div, span, input{
+    color: rgba(255, 255, 255, 1);
+    font-family: Raleway, Helvetica, sans-serif;
+    font-weight: 100;
+}
+
+div, span {
+    display: inline;
+}
+
+span {
+    margin-top: 0.25%;
+}
+
+body {
+    background-color: rgba(0, 0, 0, 1);
+    width: 100vw;
+    font-size: 16px;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+header {
+    width: 100%;
+    height: 3.5vh;
+}
+
+#score-div {
+    width: 33%;
+    float: left;
+    letter-spacing: 0.5rem;
+    font-size: 1.25rem;
+    margin-left: 0.33%;
+}
+
+#time-div {
+    width: 66.66%;
+    float: right;
+    letter-spacing: 0.5rem;
+    font-size: 1.25rem;
+    text-align: right;
+}
+
+#next-level {
+    font-size: 4rem;
+    text-align: center;
+    display: none;
+    margin-top: 45vh;
+}
+
+
+.container {
+    width: 100%;
+    height: inherit;
+    display: block;
+    margin: 0 auto;
+    text-align: center;
+}
+
+
+#instructions {
+    font-size: 1rem;
+    line-height: 1.6rem;
+    letter-spacing: 0.25rem;
+    margin: 3% 0;
+    display: none;
+    padding: 7%;
+}
+
+#emphasis {
+    font-size: 0.85rem;
+}
+
+/* BOX STYLES */
+.rows{
+    width: 100%;
+    float: left;
+    overflow: hidden;
+    position: relative;
+    display: none;
+}
+
+.box {
+    width: 8%;
+    height: 98.8%;
+    margin: 3px 2px;
+    float: left;
+    color: #fff;
+    font-family: Raleway, Helvetica, sans-serif;
+    text-align: center;
+    position: relative;
+}
+
+.levelOne {
+    height: 48%;
+    line-height: 48vh;
+}
+
+.levelTwo {
+    height: 31.75%;
+    line-height: 31.75vh;
+}
+
+.levelThree {
+    height: 23.5%;
+    line-height: 23.5vh;
+}
+
+.box:hover {
+    outline: 1px solid rgba(255, 255, 255, 0.6);
+    outline-offset: -2px;
+}
+
+/* BUTTON STYLES */
+.container button {
+    padding: 1% 2%;
+    margin-top: 45vh;
+    color: #636363;
+    font-family: Raleway, Helvetica, sans-serif;
+    font-weight: 600;
+    font-size: 1.5rem;
+    letter-spacing: .25rem;
+    text-transform: uppercase;
+    text-decoration: none;
+    background-color: transparent;
+    border-radius: 4px;
+    border: 1px solid #c8c8c8;
+    box-sizing: border-box;
+}
+
+button:hover {
+    background-color: rgba(200,200,200, 0.5);
+    color: #000;
+}
+
+button#blue:hover {
+    background-color: rgba(0, 0, 255, 0.6);
+}
+
+button#red:hover {
+    background-color: rgba(255, 0, 0, 0.6);
+}
+
+button#green:hover {
+    background-color: rgba(0, 255, 0, 0.6);
+}
+
+button#purple:hover{
+    background-color: #af00ff;
+    opacity: 0.6;
+}
+
+button#teal:hover{
+    background-color: #00ffff;
+    opacity: 0.6;
+}
+
+button#start {
+    display: none;
+}
+
+button:focus {
+    outline: 0;
+}
+
+
+/* MODAL STYLES */
+#modal {
+    background: black;
+    position: fixed;
+    width: 50%;
+    top: 25%;
+    left: 25%;
+    transform: scale(1.5);
+    opacity: 0;
+    pointer-events: none;
+}
+
+.gameOverDialogue #page-wrap {
+    -webkit-filter: blur(4px) grayscale(50%);
+    filter: blur(4px) grayscale(50%);;
+
+    -webkit-transform: scale(0.9);
+    -moz-transform: scale(0.9);
+    -o-transform: scale(0.9);
+}
+
+.gameOverDialogue #modal {
+    -webkit-transform: scale(1);
+    -moz-transform: scale(1);
+    -o-transform: scale(1);
+    opacity: 1;
+
+    pointer-events: auto;
+}
+
+#page-wrap, #modal {
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+}
+
+#paused h2 {
+    text-align: center;
+    font-size: 2rem;
+    letter-spacing: 0.25rem;
+    padding: 4% 2%;
+}
+
+/* GAMEOVER MODAL */
+#gameover-modal {
+    display:none;
+}
+
+#gameover-modal h1 {
+    text-align: center;
+    padding: 15% 15% 5% 15%;
+    font-size: 3rem;
+    letter-spacing: 0.25rem;
+}
+
+#gameover-modal h6 {
+    text-align: center;
+    padding: 1%;
+    margin: 5% 0;
+    font-size: 1.25rem;
+    letter-spacing: 0.5rem;
+}
+
+#gameover-modal input {
+    text-align: center;
+    margin: 0 30%;
+    padding: 1% 10%;
+    background-color: rgb(0,0,0);
+    border: 1px white solid;
+    text-transform: uppercase;
+}
+
+#current-player {
+    outline: 1px #000 solid;
+    animation: blink .5s step-end infinite alternate;
+}
+
+/* SCOREBOARD MODAL */
+#scoreboard-container {
+    overflow: scroll;
+    height: 65%;
+    width: 95%;
+    position: absolute;
+    margin: 0;
+}
+
+#scoreboard-modal {
+    display: none;
+}
+
+#scoreboard-modal h1 {
+    text-align: center;
+    font-size: 3rem;
+    letter-spacing: 0.75rem;
+    margin: 3% 4%;
+}
+
+#scoreboard-modal h4 {
+    text-align: center;
+    padding: 1%;
+    margin: 1% 30%;
+    font-size: 1rem;
+    letter-spacing: 0.25rem;
+}
+
+#esc {
+    text-align: center;
+    font-size: 0.7rem;
+    letter-spacing: 0.25rem;
+    margin: 1rem 0 0 0;
+    font-style: italic;
+    display: none;
+    position: absolute;
+    top: 90%;
+    width: 95%;
+}
+
+input:focus {
+    outline: none;
+}
+
+@keyframes blink { 50% { outline-color: #fff} }
