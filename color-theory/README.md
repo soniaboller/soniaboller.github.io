@@ -80,4 +80,3 @@ I wanted to create a very visual and aesthetically pleasing game, which is how I
 * Animate boxes in a circle or spiral rather than just left
 * Option for number of levels to play
 * Option to play a specific level indefinitely without a score
-
