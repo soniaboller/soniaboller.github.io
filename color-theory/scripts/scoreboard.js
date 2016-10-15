@@ -14,13 +14,13 @@ function createScoreboard(){
     if (typeof checkStorage == 'object'){
         localStorage.setItem('highscores', JSON.stringify([]));
     }
-    // if (typeof checkScoreboard == 'object'){
-    //     localStorage.setItem('scoreboard', JSON.stringify([]));
-    // }
-        // THIS IS SOLELY FOR DEMONSTRATION SO THE SCOREBOARD FUNCTION WORKS
-    if (typeof checkScoreboard !== 'object'){
-        localStorage.setItem('scoreboard', JSON.stringify([{"name":"SONIA","totalScore":121},{"name":"BILL","totalScore":111},{"name":"DICK","totalScore":108},{"name":"SNOOP","totalScore":105},{"name":"EARL","totalScore":97},{"name":"FRED","totalScore":93},{"name":"CARRIE","totalScore":82},{"name":"MARY","totalScore":70},{"name":"JANE","totalScore":69},{"name":"BERTHA","totalScore":68},{"name":"BOB","totalScore":63},{"name":"GERTRUDE","totalScore":60},{"name":"STEWIE","totalScore":55}]));
+    if (typeof checkScoreboard == 'object'){
+        localStorage.setItem('scoreboard', JSON.stringify([]));
     }
+        // THIS IS SOLELY FOR DEMONSTRATION SO THE SCOREBOARD FUNCTION WORKS
+    // if (typeof checkScoreboard == 'object'){
+    //     localStorage.setItem('scoreboard', JSON.stringify([{"name":"SONIA","totalScore":121},{"name":"BILL","totalScore":111},{"name":"DICK","totalScore":108},{"name":"SNOOP","totalScore":105},{"name":"EARL","totalScore":97},{"name":"FRED","totalScore":93},{"name":"CARRIE","totalScore":82},{"name":"MARY","totalScore":70},{"name":"JANE","totalScore":69},{"name":"BERTHA","totalScore":68},{"name":"BOB","totalScore":63},{"name":"GERTRUDE","totalScore":60},{"name":"STEWIE","totalScore":55}]));
+    // }
 }
 createScoreboard();
 
