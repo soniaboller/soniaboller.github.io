@@ -1,5 +1,3 @@
-// slow down time for when there are less rows
-
 var game = game || {};
 game.removeFirstRowBox = removeFirstRowBox;
 game.createBox = createBox;
