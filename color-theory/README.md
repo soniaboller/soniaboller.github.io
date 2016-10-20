@@ -8,9 +8,9 @@
 
 Color Theory randomly generates different shades of red, green, or blue boxes, and animates the boxes within each row. The purpose of the game is to click on boxes that are darker than the two boxes to its left and right. As the levels progress the difference in color shade becomes smaller and more rows are generated. Color theory is 9 levels long, and each level is 20 seconds long. At the end of the game your score is saved in local storage and displayed on scoreboard sorted by high score. Color Theory is best played while listening to some chill ambient music: (https://soundcloud.com/tycho/sets/tycho-dive).
 
-![Color Theory Board](/images/colortheory.png)
+![Color Theory Board](./images/colortheory.png)
 
-![Scoreboard](/images/scoreboard.png)
+![Scoreboard](./images/scoreboard.png)
 
 ---
 
