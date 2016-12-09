@@ -1,0 +1,63 @@
+<html>
+<head>
+    <title>Audible Visuals: Spiral</title>
+    <link rel='stylesheet' href='styles/main.css' />
+    <meta http-equiv="Cache-control" content="no-store"/>
+    <meta http-equiv="Cache-control" content="no-cache"/>
+    <meta http-equiv="cache-control" content="max-age=0"/>
+    <script src="scripts/jquery.min.js"></script>
+    <script src="scripts/three.min.js"></script>
+    <script src="scripts/velocity.min.js"></script>
+    <script src="scripts/get-float-time-domain-data.js"></script>
+    <script src="scripts/dat.gui.min.js"></script>
+    <script src="scripts/stats.min.js"></script>
+    <script src="scripts/audioLoader.js"></script>
+    <script src="scripts/OrbitControls.js"></script>
+    <script src="scripts/CanvasRenderer.js"></script>
+    <script src="scripts/Projector.js"></script>
+
+</head>
+<body>
+<p id="instructions">
+    '1', '2', '3' toggle visualizers <br>
+    'r', 'g', 'b' toggle colors <br>
+    'a' toggles animation <br>
+    'space' toggles playback <br>
+</p>
+<p id="notification"> drag and drop a song <br>
+    (press 'i' to see keyboard controls) <br>
+</p>
+<script>
+    var nav = true;
+    var inst = false;
+    function onKeyDown(e) {
+        switch (e.which) {
+            case 78:
+                if(!nav){
+                    $('nav').css('visibility','visible');
+                    nav = !nav;
+                }
+                else {
+                    $('nav').css('visibility','hidden');
+                    nav = !nav;
+                }
+                break;
+            case 73:
+                if(!inst){
+                    console.log('hit')
+                    $('#instructions').css('visibility','visible');
+                    inst = !inst;
+                }
+                else {
+                    console.log('hit 2')
+                    $('#instructions').css('visibility','hidden');
+                    inst = !inst;
+                }
+        }
+    }
+    document.addEventListener('keydown', onKeyDown, false);
+    $('#notification').velocity('fadeIn', { delay: 150, duration: 1500 });
+</script>
+<script src="scripts/spiral.js"></script>
+</body>
+</html>
