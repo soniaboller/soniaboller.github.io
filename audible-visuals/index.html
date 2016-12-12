@@ -19,13 +19,13 @@
 </head>
 <body>
 <p id="instructions">
-    '1', '2', '3' toggle visualizers <br>
+    '1', '2', '3', '4' toggle visualizers <br>
     'r', 'g', 'b' toggle colors <br>
     'a' toggles animation <br>
     'space' toggles playback <br>
 </p>
 <p id="notification"> drag and drop a song <br>
-    (press 'i' to see keyboard controls) <br>
+    (press 'k' to see keyboard controls) <br>
 </p>
 <script>
     var nav = true;
@@ -42,14 +42,12 @@
                     nav = !nav;
                 }
                 break;
-            case 73:
+            case 75:
                 if(!inst){
-                    console.log('hit')
                     $('#instructions').css('visibility','visible');
                     inst = !inst;
                 }
                 else {
-                    console.log('hit 2')
                     $('#instructions').css('visibility','hidden');
                     inst = !inst;
                 }
