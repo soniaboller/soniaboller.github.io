@@ -294,3 +294,44 @@ input:focus {
 }
 
 @keyframes blink { 50% { outline-color: #fff} }
+
+@media(min-width: 1130px) and (max-width: 1200px){
+    .box {
+        width: 7.98%
+    }
+}
+@media(min-width: 1070px) and (max-width: 1130px){
+    .box {
+        width: 7.96%
+    }
+}
+@media(min-width: 1015px) and (max-width: 1070px){
+    .box {
+        width: 7.94%
+    }
+}
+@media(min-width: 965px) and (max-width: 1015px){
+    .box {
+        width: 7.92%
+    }
+}
+@media(min-width: 920px) and (max-width: 965px){
+    .box {
+        width: 7.9%
+    }
+}
+@media(min-width: 860px) and (max-width: 920px){
+    .box {
+        width: 7.87%
+    }
+}
+@media(min-width: 810px) and (max-width: 860px){
+    .box {
+        width: 7.84%
+    }
+}
+@media(min-width: 750px) and (max-width: 810px){
+    .box {
+        width: 7.8%
+    }
+}

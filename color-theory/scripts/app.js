@@ -4,7 +4,7 @@ $(document).ready(function(){
 
 var game = game || {};
 game.score = 0;
-game.time = 21;
+game.time = 21000;
 game.level = 1;
 game.colorButtonChoice = '';
 game.rowNumber = 2;
