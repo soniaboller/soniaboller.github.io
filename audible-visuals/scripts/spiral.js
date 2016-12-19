@@ -155,7 +155,7 @@ function init() {
 
 // GUI control panel
 var GuiControls = function(){
-    this.intensity = 0.25;
+    this.intensity = 0.18;
     this.toggleRed = true;
     this.toggleGreen = false;
     this.toggleBlue = false;
@@ -231,7 +231,6 @@ gui.add(spiral, 'circle').name('Circle').listen().onChange(function(){
     circleFolder.open();
 });
 
-
 // selected visualizer controls folder
 var spiralFolder = gui.addFolder('Spiral Controls');
 spiralFolder.add(spiral,'a', 0, 50).step(0.01).name('Inner Radius');
@@ -280,6 +279,8 @@ colorFolder.add(spiral, 'G', 0, 1).name('Green').step(0.01);
 colorFolder.add(spiral, 'B', 0, 1).name('Blue').step(0.01);
 colorFolder.open();
 
+// hides dat.gui for production
+dat.GUI.toggleHide();
 
 function animate() {
     app.animationFrame = (window.requestAnimationFrame || window.webkitRequestAnimationFrame)(app.animate);
