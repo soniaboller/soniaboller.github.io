@@ -280,7 +280,7 @@ colorFolder.add(spiral, 'B', 0, 1).name('Blue').step(0.01);
 colorFolder.open();
 
 // hides dat.gui for production
-dat.GUI.toggleHide();
+// dat.GUI.toggleHide();
 
 function animate() {
     app.animationFrame = (window.requestAnimationFrame || window.webkitRequestAnimationFrame)(app.animate);
