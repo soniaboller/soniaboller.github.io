@@ -46,6 +46,7 @@ ul {
   margin: 1%;
   font-weight: 100;
   position: absolute;
+  font-size:0.75rem;
 }
 
 #notification {

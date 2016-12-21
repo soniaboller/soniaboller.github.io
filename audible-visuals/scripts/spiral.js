@@ -454,4 +454,4 @@ function changeCircleRadius(){
     }
 }
 
-console.log("'1', '2', '3', and '4' toggle visualizers \n'r', 'g', 'b' toggle colors \n'a' toggles animation \n'space' toggles playback \n'c' toggles controls");
+console.log("'1' '2' '3' '4' toggle visualizers \n'R' 'G' 'B' toggle colors \n'A' toggles animation \n'SPACE' toggles playback");
