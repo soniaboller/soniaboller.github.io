@@ -244,7 +244,7 @@ wavySpiralFolder.add(spiral,'bWavy', 0, 3).step(0.01).name('Outer Radius');
 wavySpiralFolder.add(spiral,'wavyAngle', 1, 4).step(0.01).name('Angle');
 wavySpiralFolder.open();
 
-var flowerFolder = gui.addFolder('Star Controls');
+var flowerFolder = gui.addFolder('Flower Controls');
 flowerFolder.add(spiral,'aFlower', 0, 50).step(0.01).name('Inner Radius');
 flowerFolder.add(spiral,'bFlower', 0, 3).step(0.01).name('Outer Radius');
 flowerFolder.add(spiral,'flowerAngle', 1, 4).step(0.01).name('Angle');
@@ -454,4 +454,4 @@ function changeCircleRadius(){
     }
 }
 
-console.log("'1' '2' '3' '4' toggle visualizers \n'R' 'G' 'B' toggle colors \n'A' toggles animation \n'SPACE' toggles playback");
+console.log("'1' '2' '3' '4' toggle visualizers \n'R' 'G' 'B' toggle colors \n'A' toggles animation \n'SPACE' toggles playback \n'h' toggles extra controls");
