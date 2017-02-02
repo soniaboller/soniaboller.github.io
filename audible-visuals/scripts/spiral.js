@@ -78,24 +78,40 @@ function init() {
                 spiral.wavySpiral = false;
                 spiral.circle = false;
                 spiral.flower = false;
+                spiralFolder.open();
+                wavySpiralFolder.close();
+                flowerFolder.close();
+                circleFolder.close();
                 break;
             case 50:
                 spiral.spiral = false;
                 spiral.wavySpiral = true;
                 spiral.circle = false;
                 spiral.flower = false;
+                spiralFolder.close();
+                wavySpiralFolder.open();
+                flowerFolder.close();
+                circleFolder.close();
                 break;
             case 51:
                 spiral.spiral = false;
                 spiral.wavySpiral = false;
                 spiral.circle = false;
                 spiral.flower = true;
+                spiralFolder.close();
+                wavySpiralFolder.close();
+                flowerFolder.open();
+                circleFolder.close();
                 break;
             case 52:
                 spiral.spiral = false;
                 spiral.wavySpiral = false;
                 spiral.circle = true;
                 spiral.flower = false;
+                spiralFolder.close();
+                wavySpiralFolder.close();
+                flowerFolder.close();
+                circleFolder.open();
                 break;
             case 82:
                 spiral.toggleRed = true;
