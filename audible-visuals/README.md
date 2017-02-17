@@ -6,9 +6,9 @@ Drag and drop a song from your computer and visualize the tunes. Visualizations 
   
 Play around!! It's mind blowing how visually different songs can be.
   
-![Spiral](/images/spiral.png)
+![Spiral](images/spiral.png)
 
-![WavySpiral](/images/wavyspiral.png)
+![WavySpiral](images/wavyspiral.png)
 
 ### Keyboard Controls
 * 'a' : starts and stops animation
