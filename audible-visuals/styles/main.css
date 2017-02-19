@@ -38,7 +38,7 @@ ul {
 
 #instructions {
   z-index: 10000;
-  visibility: hidden;
+  visibility: visible;
   width: 25%;
   text-align: left;
   letter-spacing: 0.15rem;
