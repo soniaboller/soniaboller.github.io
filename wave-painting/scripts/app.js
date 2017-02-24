@@ -151,8 +151,8 @@ var windowHalfY = window.innerHeight / 2;
         }
 
         // need camera position x and y to revolve around at the same speed as the rotation matrix, but oscillate on the sin and cos wave
-        camera.position.x += ( - mouseX - camera.position.x ) * .002;
-        camera.position.y += ( mouseY - camera.position.y ) * .002;
+        // camera.position.x += ( - mouseX - camera.position.x ) * .002;
+        // camera.position.y += ( mouseY - camera.position.y ) * .002;
         var rotationMatrix = new THREE.Matrix4().makeRotationZ( Math.PI / 1500 );
         camera.up.applyMatrix4(rotationMatrix);
         camera.lookAt(scene.position);
