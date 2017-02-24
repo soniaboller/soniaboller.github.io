@@ -1,17 +1,19 @@
 var app = app || {};
+app.init = init;
+app.animate = animate;
 var container, points = [];
 var camera, scene, renderer;
 var mouseX = 0, mouseY = 0;
 var windowHalfX = window.innerWidth / 2;
 var windowHalfY = window.innerHeight / 2;
-createScene();
+// createScene();
 
-function createScene(){
+// function createScene(){
     container = document.createElement('div');
     container.setAttribute('id', 'container');
     document.body.appendChild(container);
-    camera = new THREE.PerspectiveCamera(50, window.innerWidth / window.innerHeight, 1, 10000);
-    camera.position.set( 100000, 0, 3200 );
+    camera = new THREE.PerspectiveCamera(100, window.innerWidth / window.innerHeight, 1, 10000);
+    camera.position.set( 0, 0, 750 );
     scene = new THREE.Scene();
     renderer = new THREE.WebGLRenderer({preserveDrawingBuffer: true});
     renderer.setPixelRatio(window.devicePixelRatio);
@@ -29,7 +31,7 @@ function createScene(){
     var gui = new dat.GUI();
     gui.add(wave, 'color', {Red: 'red', Orange: 'orange', Yellow: 'yellow', Green: 'green', Blue: 'blue', Purple: 'purple'})
     .name('Color').listen().onChange(function(){
-        if (points.length >= 3850){
+        if (points.length >= 2048){
             clearCanvas();
         }
         init();
@@ -61,19 +63,21 @@ function createScene(){
         else if(wave.color === 'purple'){
             colors = purpleColors;
         }
-        for (var i = 0; i < 3850; i++) {
+        for (var i = 0; i < 2048; i++) {
             var geometry = new THREE.Geometry();
             var vertex = new THREE.Vector3();
-            vertex.x = Math.sin(i);
-            vertex.y = Math.cos(i);
-            vertex.z = Math.random() * (i/2);
-            geometry.vertices.push( vertex );
+            geometry.verticesNeedUpdate = true;
+            vertex.x = 0;
+            vertex.y = (i-1024);
+            // vertex.z = 1;
+            geometry.vertices.push(vertex);
             geometry.colors.push(new THREE.Color(colors[ Math.floor(Math.random() * colors.length) ]));
+            // console.log(geometry);
             var material = new THREE.PointsMaterial( {
-                size: 0.75,
+                size: 1,
                 vertexColors: THREE.VertexColors,
                 depthTest: false,
-                opacity: 0.75,
+                opacity: 1,
                 sizeAttenuation: false
                 } );
             var mesh = new THREE.Points( geometry, material );
@@ -82,7 +86,8 @@ function createScene(){
         }
         document.addEventListener('mousemove', onMouseMove, false);
         window.addEventListener('resize', onWindowResize, false);
-        animate();
+        document.addEventListener('keydown', onKeyDown, false);
+        // animate();
     }
 
     function clearCanvas(){
@@ -118,10 +123,51 @@ function createScene(){
     }
 
     function render() {
-        camera.position.x += ( - mouseX - camera.position.x ) * .02;
-        camera.position.y += ( mouseY - camera.position.y ) * .02;
+        var timeFrequencyData = new Uint8Array(analyser.fftSize);
+        var timeFloatData = new Float32Array(analyser.fftSize);
+        analyser.getByteTimeDomainData(timeFrequencyData);
+        analyser.getFloatTimeDomainData(timeFloatData);
+        for (var j = 0; j < points.length; j++){
+            var point = points[j];
+            // point.geometry.vertices[0].x += Math.sin(j);
+            // point.geometry.vertices[0].y += Math.cos(j);
+            // point.geometry.vertices[0].z = (timeFloatData[j] * timeFrequencyData[j] * 250);
+            // console.log(point.geometry.vertices[0].z);
+
+            point.position.x = point.geometry.vertices[0].x;
+            point.position.y = point.geometry.vertices[0].y;
+
+            // else if ((timeFloatData[j] * timeFrequencyData[j] * 100) >= 10000 || (timeFloatData[j] * timeFrequencyData[j] * 100) <= -10000){
+            //     console.log('out of range')
+            // }
+            // else{
+                point.position.z = (-(timeFrequencyData[j])/3);
+            // }
+            // console.log(j);
+            // camera.position.x += Math.sin(j);
+            // camera.position.y += Math.cos(j);
+            // add audio integration here
+        }
+        // camera.position.x += ( - mouseX - camera.position.x ) * .02;
+        // camera.position.y += ( mouseY - camera.position.y ) * .02;
+        var rotationMatrix = new THREE.Matrix4().makeRotationZ( Math.PI / 1500 );
+        camera.up.applyMatrix4(rotationMatrix);
         camera.lookAt(scene.position);
         renderer.render(scene, camera);
     }
 
+function onKeyDown(e) {
+    switch (e.which) {
+        case 32:
+            if (app.play) {
+                app.audio.pause();
+                app.play = false;
+            } else {
+                app.audio.play();
+                app.play = true;
+            }
+            break;
+    }
 }
+
+// }
