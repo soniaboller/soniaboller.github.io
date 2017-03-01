@@ -29,8 +29,8 @@ function init() {
     textureSphere = textureLoader.load( "textures/metal.jpg" );
     textureSphere.mapping = THREE.SphericalReflectionMapping;
 
-    ianTexture = textureLoader.load( "textures/ian1.png" );
-    soniaTexture = textureLoader.load( "textures/sonia1.png" );
+    ianTexture = textureLoader.load( "textures/ian.png" );
+    soniaTexture = textureLoader.load( "textures/sonia.png" );
 
     var ianMaterial = new THREE.PointsMaterial({ size: 150, map: ianTexture, depthTest: false, transparent : false });
     var soniaMaterial = new THREE.PointsMaterial({ size: 150, map: soniaTexture, blending: THREE.AdditiveBlending, depthTest: false, transparent : true});
