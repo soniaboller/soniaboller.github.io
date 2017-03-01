@@ -1,12 +1,18 @@
+var app = {} || app;
+app.play = true;
+
 var controls, camera, scene, renderer;
 var cameraCube, sceneCube;
 var textureEquirec, textureSphere;
 var cubeMesh, sphereMesh, sphereMesh2;
 var sphereMaterial;
 var ianTexture, soniaTexture, ian, sonia;
+var start = Date.now();
 init();
 animate();
 function init() {
+    app.audio = document.getElementsByTagName('audio');
+    console.log(app.audio)
     // CAMERAS
     camera = new THREE.PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 1, 100000 );
     camera.position.set( 0, 0, 1000 );
@@ -24,18 +30,26 @@ function init() {
     // dirLight.position.set( 0, 1, 0 ).normalize();
     // scene.add( dirLight );
 
-    var pointLight = new THREE.PointLight( 0x0000ff, 10, 400 );
-    pointLight.position.set( 0, 300, 100 );
-    scene.add( pointLight );
+    var pointLightFront = new THREE.PointLight( 0x0000ff, 30, 400 );
+    pointLightFront.position.set( 0, 300, 200 );
+    scene.add( pointLightFront );
 
-    var pointLight2 = new THREE.PointLight( 0xff0000, 10, 400 );
-    pointLight2.position.set( 0, 300, -100 );
-    scene.add( pointLight2 );
+    var pointLightBack = new THREE.PointLight( 0x00ff00, 30, 400 );
+    pointLightBack.position.set( 0, 300, -200 );
+    scene.add( pointLightBack );
 
 
-    var pointLight3 = new THREE.PointLight( 0x00ff00, 10, 400 );
-    pointLight3.position.set( 0, -10, 0 );
-    scene.add( pointLight3 );
+    var pointLightBottom = new THREE.PointLight( 0xff0000, 20, 400 );
+    pointLightBottom.position.set( 0, -100, 0 );
+    scene.add( pointLightBottom );
+
+    var pointLightLeft = new THREE.PointLight( 0xffff00, 10, 400 );
+    pointLightLeft.position.set( -500, 100, 0 );
+    scene.add( pointLightLeft );
+
+    var pointLightRight = new THREE.PointLight( 0xffff00, 10, 400 );
+    pointLightRight.position.set( 500, 100, 0 );
+    scene.add( pointLightRight );
 
     // Textures
     var textureLoader = new THREE.TextureLoader();
@@ -73,20 +87,20 @@ function init() {
     // sonia = new THREE.Points (soniaGeometry, soniaMaterial);
 
     ian = new THREE.Sprite( ianMaterial );
-    ian.scale.set(150, 200, 0)
-    ian.position.set(500,200,1)
+    ian.scale.set(175, 225, 0);
+    ian.position.set(500,210,1);
     sonia = new THREE.Sprite( soniaMaterial );
-    sonia.scale.set(150, 200, 0)
-    sonia.position.set(-500,200,1)
+    sonia.scale.set(175, 225, 0);
+    sonia.position.set(-500,210,1);
 
-    // Materials
-
+    scene.add(ian);
+    scene.add(sonia);
 
     var loader = new THREE.FontLoader();
 
     loader.load( 'fonts/helvetiker_regular.typeface.json', function ( font ) {
 
-        var textGeo = new THREE.TextGeometry( "HAPPY BIRTHDAY", {
+        var textGeo = new THREE.TextGeometry( "HAPPY BIRTHDAY!", {
 
             font: font,
 
@@ -109,7 +123,6 @@ function init() {
 
     } );
 
-
     var equirectShader = THREE.ShaderLib[ "equirect" ];
     var equirectMaterial = new THREE.ShaderMaterial( {
         fragmentShader: equirectShader.fragmentShader,
@@ -129,10 +142,12 @@ function init() {
     } );
     cubeMaterial.uniforms[ "tCube" ].value = textureEquirec;
     cubeMesh = new THREE.Mesh( new THREE.BoxGeometry( 100, 100, 100 ), equirectMaterial );
+    cubeMesh.visible = true;
     sceneCube.add( cubeMesh );
-    //
+
     var geometry = new THREE.SphereGeometry( 200.0, 24, 24 );
-    sphereMaterial = new THREE.MeshLambertMaterial( { envMap: textureEquirec } );
+    sphereMaterial = new THREE.MeshBasicMaterial( { envMap: textureEquirec } );
+    sphereMaterial.needsUpdate = true;
     sphereMesh = new THREE.Mesh( geometry, sphereMaterial );
     sphereMesh.position.x = -500;
     sphereMesh.position.y = -100;
@@ -142,12 +157,6 @@ function init() {
     scene.add( sphereMesh );
     scene.add( sphereMesh2 );
 
-    scene.add(ian);
-    scene.add(sonia);
-
-    cubeMesh.visible = true;
-    sphereMaterial.needsUpdate = true;
-    //
     renderer = new THREE.WebGLRenderer();
     renderer.autoClear = false;
     renderer.setPixelRatio( window.devicePixelRatio );
@@ -156,6 +165,23 @@ function init() {
     document.body.appendChild( renderer.domElement );
     //
 }
+
+function onKeyDown(e) {
+    switch (e.which) {
+        case 32:
+                if (app.play) {
+                    app.audio[0].pause();
+                    app.play = false;
+                } else {
+                    app.audio[0].play();
+                    app.play = true;
+                }
+            }
+}
+
+document.addEventListener('keydown', onKeyDown, false);
+document.addEventListener('resize', onWindowResize, false);
+
 function onWindowResize() {
     camera.aspect = window.innerWidth / window.innerHeight;
     camera.updateProjectionMatrix();
@@ -170,8 +196,12 @@ function animate() {
     controls.update();
 }
 function render() {
-    var timer = -0.0002 * Date.now();
+    var timer = Date.now() - start;
     camera.lookAt( scene.position );
+    // sphereMesh.position.y = Math.abs( Math.sin( timer * 0.002 ) ) * 150;
+    // sphereMesh2.position.y = Math.abs( Math.sin( timer * 0.002 ) ) * 150;
+    ian.position.y = 200 + (Math.abs( Math.cos( timer * 0.002 ) ) * 150);
+    sonia.position.y = 200 + (Math.abs( Math.sin( timer * 0.002 ) ) * 150);
     cameraCube.rotation.copy( camera.rotation );
     renderer.render( sceneCube, cameraCube );
     renderer.render( scene, camera );
