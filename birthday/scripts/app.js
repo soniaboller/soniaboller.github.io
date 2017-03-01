@@ -22,6 +22,8 @@ function init() {
 
     // Textures
 
+
+
     var textureLoader = new THREE.TextureLoader();
     textureEquirec = textureLoader.load( "textures/IMG_7016.jpg" );
     textureEquirec.mapping = THREE.EquirectangularReflectionMapping;
@@ -51,13 +53,15 @@ function init() {
         side: THREE.BackSide
     } );
 
-    cubeMaterial.uniforms[ "tCube" ].value = textureEquirec;
+
     cubeMesh = new THREE.Mesh( new THREE.BoxGeometry( 100, 100, 100 ), cubeMaterial );
+    cubeMesh.material = equirectMaterial;
+    cubeMesh.visible = true;
     sceneCube.add( cubeMesh );
 
     //
     var geometry = new THREE.SphereGeometry( 400.0, 24, 24 );
-    sphereMaterial = new THREE.MeshLambertMaterial( { envMap: textureEquirec } );
+    sphereMaterial = new THREE.MeshLambertMaterial( { envMap: textureEquirec, needsUpdate: true } );
     sphereMesh = new THREE.Mesh( geometry, sphereMaterial );
     scene.add( sphereMesh );
     //
