@@ -32,8 +32,8 @@ function init() {
     ianTexture = textureLoader.load( "textures/ian1.png" );
     soniaTexture = textureLoader.load( "textures/sonia1.png" );
 
-    var ianMaterial = new THREE.PointsMaterial({ size: 150, map: ianTexture, blending: THREE.AdditiveBlending, depthTest: false, transparent : false });
-    var soniaMaterial = new THREE.PointsMaterial({ size: 150, map: soniaTexture, blending: THREE.AdditiveBlending, depthTest: false, transparent : true});
+    var ianMaterial = new THREE.SpriteMaterial({ map: ianTexture});
+    var soniaMaterial = new THREE.SpriteMaterial({ map: soniaTexture});
     var ianGeometry = new THREE.Geometry();
     var ianVertex = new THREE.Vector3();
     ianVertex.x = -500;
