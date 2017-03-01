@@ -26,7 +26,7 @@ function init() {
     textureEquirec.magFilter = THREE.LinearFilter;
     textureEquirec.minFilter = THREE.LinearMipMapLinearFilter;
     textureSphere = textureLoader.load( "textures/photo.jpg" );
-    textureSphere.mapping = THREE.SphericalReflectionMapping;
+    // textureSphere.mapping = THREE.SphericalReflectionMapping;
     // Materials
 
     var equirectShader = THREE.ShaderLib[ "equirect" ];
