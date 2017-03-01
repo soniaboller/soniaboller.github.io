@@ -1,7 +1,7 @@
 var controls, camera, scene, renderer;
 var cameraCube, sceneCube;
 var textureEquirec, textureSphere;
-var cubeMesh, sphereMesh;
+var cubeMesh, sphereMesh, sphereMesh2;
 var sphereMaterial;
 init();
 animate();
@@ -25,8 +25,8 @@ function init() {
     textureEquirec.mapping = THREE.EquirectangularReflectionMapping;
     textureEquirec.magFilter = THREE.LinearFilter;
     textureEquirec.minFilter = THREE.LinearMipMapLinearFilter;
-    textureSphere = textureLoader.load( "textures/photo.jpg" );
-    // textureSphere.mapping = THREE.SphericalReflectionMapping;
+    textureSphere = textureLoader.load( "textures/metal.jpg" );
+    textureSphere.mapping = THREE.SphericalReflectionMapping;
     // Materials
 
     var equirectShader = THREE.ShaderLib[ "equirect" ];
@@ -51,10 +51,14 @@ function init() {
     cubeMesh = new THREE.Mesh( new THREE.BoxGeometry( 100, 100, 100 ), equirectMaterial );
     sceneCube.add( cubeMesh );
     //
-    var geometry = new THREE.SphereGeometry( 400.0, 24, 24 );
+    var geometry = new THREE.SphereGeometry( 200.0, 24, 24 );
     sphereMaterial = new THREE.MeshLambertMaterial( { envMap: textureEquirec } );
     sphereMesh = new THREE.Mesh( geometry, sphereMaterial );
+    sphereMesh.position.x = -25;
+    sphereMesh2 = new THREE.Mesh( geometry, sphereMaterial );
+    sphereMesh2.position.x = 25;
     scene.add( sphereMesh );
+    scene.add( sphereMesh2 );
 
     cubeMesh.visible = true;
     sphereMaterial.needsUpdate = true;
