@@ -32,9 +32,10 @@ function init() {
     textureEquirec.mapping = THREE.EquirectangularReflectionMapping;
     textureEquirec.magFilter = THREE.LinearFilter;
     textureEquirec.minFilter = THREE.LinearMipMapLinearFilter;
-    textureSphere = textureLoader.load( "textures/metal.jpg" );
+    textureSphere = textureLoader.load( "textures/photo.jpg" );
     textureSphere.mapping = THREE.SphericalReflectionMapping;
     // Materials
+
     var equirectShader = THREE.ShaderLib[ "equirect" ];
     var equirectMaterial = new THREE.ShaderMaterial( {
         fragmentShader: equirectShader.fragmentShader,
