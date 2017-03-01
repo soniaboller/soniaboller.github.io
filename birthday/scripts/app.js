@@ -42,6 +42,19 @@ function init() {
     } );
     equirectMaterial.uniforms[ "tEquirect" ].value = textureEquirec;
 
+    var cubeShader = THREE.ShaderLib[ "cube" ];
+    var cubeMaterial = new THREE.ShaderMaterial( {
+        fragmentShader: cubeShader.fragmentShader,
+        vertexShader: cubeShader.vertexShader,
+        uniforms: cubeShader.uniforms,
+        depthWrite: false,
+        side: THREE.BackSide
+    } );
+
+    cubeMaterial.uniforms[ "tCube" ].value = textureEquirec;
+    cubeMesh = new THREE.Mesh( new THREE.BoxGeometry( 100, 100, 100 ), cubeMaterial );
+    sceneCube.add( cubeMesh );
+
     //
     var geometry = new THREE.SphereGeometry( 400.0, 24, 24 );
     sphereMaterial = new THREE.MeshLambertMaterial( { envMap: textureEquirec } );
@@ -55,15 +68,6 @@ function init() {
     renderer.setFaceCulling( THREE.CullFaceNone );
     document.body.appendChild( renderer.domElement );
     //
-    var params = {
-        Equirectangular: function () {
-            cubeMesh.material = equirectMaterial;
-            cubeMesh.visible = true;
-            sphereMaterial.envMap = textureEquirec;
-            sphereMaterial.needsUpdate = true;
-        },
-        Refraction: false
-    };
 
     window.addEventListener( 'resize', onWindowResize, false );
 }
