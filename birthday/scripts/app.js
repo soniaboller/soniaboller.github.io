@@ -21,11 +21,11 @@ function init() {
     scene.add( ambient );
     // Textures
     var textureLoader = new THREE.TextureLoader();
-    textureEquirec = textureLoader.load( "textures/photo.jpg" );
+    textureEquirec = textureLoader.load( "textures/sikkim.jpg" );
     textureEquirec.mapping = THREE.EquirectangularReflectionMapping;
     textureEquirec.magFilter = THREE.LinearFilter;
     textureEquirec.minFilter = THREE.LinearMipMapLinearFilter;
-    textureSphere = textureLoader.load( "textures/metal.jpg" );
+    textureSphere = textureLoader.load( "textures/photo.jpg" );
     textureSphere.mapping = THREE.SphericalReflectionMapping;
     // Materials
 
