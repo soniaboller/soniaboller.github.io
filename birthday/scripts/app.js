@@ -3,7 +3,7 @@ var cameraCube, sceneCube;
 var textureEquirec, textureSphere;
 var cubeMesh, sphereMesh, sphereMesh2;
 var sphereMaterial;
-var ianTexture, soniaTexture;
+var ianTexture, soniaTexture, ian, sonia;
 init();
 animate();
 function init() {
@@ -35,9 +35,11 @@ function init() {
     var ianMaterial = new THREE.SpriteMaterial({ map: ianTexture });
     var soniaMaterial = new THREE.SpriteMaterial({ map: soniaTexture});
 
-    var ian = new THREE.Sprite (ianMaterial);
-    var sonia = new THREE.Sprite (soniaMaterial);
-    
+    ian = new THREE.Sprite (ianMaterial);
+    ian.position.set(-500, 100, 0);
+    sonia = new THREE.Sprite (soniaMaterial);
+    sonia.position.set(500, 100, 0);
+
     scene.add(ian);
     scene.add(sonia);
 
