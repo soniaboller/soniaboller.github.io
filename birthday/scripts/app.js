@@ -21,7 +21,7 @@ function init() {
     scene.add( ambient );
     // Textures
     var textureLoader = new THREE.TextureLoader();
-    textureEquirec = textureLoader.load( "textures/sikkim.jpg" );
+    textureEquirec = textureLoader.load( "textures/photo.jpg" );
     textureEquirec.mapping = THREE.EquirectangularReflectionMapping;
     textureEquirec.magFilter = THREE.LinearFilter;
     textureEquirec.minFilter = THREE.LinearMipMapLinearFilter;
