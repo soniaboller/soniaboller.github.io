@@ -32,11 +32,12 @@ function init() {
     ianTexture = textureLoader.load( "textures/ian.png" );
     soniaTexture = textureLoader.load( "textures/sonia.png" );
 
-    var ianMaterial = new THREE.SpriteMaterial({ map: ianTexture, blending: THREE.AdditiveBlending, depthTest: false, transparent : true });
-    var soniaMaterial = new THREE.SpriteMaterial({ map: soniaTexture, blending: THREE.AdditiveBlending, depthTest: false, transparent : true });
+    var ianMaterial = new THREE.SpriteMaterial({ map: ianTexture });
+    var soniaMaterial = new THREE.SpriteMaterial({ map: soniaTexture});
 
     var ian = new THREE.Sprite (ianMaterial);
     var sonia = new THREE.Sprite (soniaMaterial);
+    
     scene.add(ian);
     scene.add(sonia);
 
