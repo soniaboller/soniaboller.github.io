@@ -32,16 +32,24 @@ function init() {
     ianTexture = textureLoader.load( "textures/ian.png" );
     soniaTexture = textureLoader.load( "textures/sonia.png" );
 
-    var ianMaterial = new THREE.SpriteMaterial({ map: ianTexture });
-    var soniaMaterial = new THREE.SpriteMaterial({ map: soniaTexture});
+    var ianMaterial = new THREE.PointsMaterial({ size: 25, map: ianTexture, blending: THREE.AdditiveBlending, depthTest: false });
+    var soniaMaterial = new THREE.PointsMaterial({ size: 25, map: soniaTexture, blending: THREE.AdditiveBlending, depthTest: false});
+    var ianGeometry = new THREE.Geometry();
+    var ianVertex = new THREE.Vector3();
+    ianVertex.x = -500;
+    ianVertex.y = 100;
+    ianVertex.z = 1;
+    ianGeometry.vertices.push(ianVertex);
 
-    ian = new THREE.Sprite (ianMaterial);
-    ian.position.set(-500, 100, 0);
-    sonia = new THREE.Sprite (soniaMaterial);
-    sonia.position.set(500, 100, 0);
+    var soniaGeometry = new THREE.Geometry();
+    var soniaVertex = new THREE.Vector3();
+    soniaVertex.x = -500;
+    soniaVertex.y = 100;
+    soniaVertex.z = 1;
+    soniaGeometry.vertices.push(soniaVertex);
 
-    scene.add(ian);
-    scene.add(sonia);
+    ian = new THREE.Points (ianGeometry, ianMaterial);
+    sonia = new THREE.Points (ianGeometry, ianMaterial);
 
     // Materials
 
@@ -75,6 +83,9 @@ function init() {
     sphereMesh2.position.x = 500;
     scene.add( sphereMesh );
     scene.add( sphereMesh2 );
+
+    scene.add(ian);
+    scene.add(sonia);
 
     cubeMesh.visible = true;
     sphereMaterial.needsUpdate = true;
