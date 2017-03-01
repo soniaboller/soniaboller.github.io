@@ -32,8 +32,8 @@ function init() {
     ianTexture = textureLoader.load( "textures/ian.png" );
     soniaTexture = textureLoader.load( "textures/sonia.png" );
 
-    var ianMaterial = new THREE.PointsMaterial({ size: 100, map: ianTexture, blending: THREE.AdditiveBlending, depthTest: false, transparent : true });
-    var soniaMaterial = new THREE.PointsMaterial({ size: 100, map: soniaTexture, blending: THREE.AdditiveBlending, depthTest: false, transparent : true});
+    var ianMaterial = new THREE.PointsMaterial({ size: 150, map: ianTexture, blending: THREE.AdditiveBlending, depthTest: false, transparent : true });
+    var soniaMaterial = new THREE.PointsMaterial({ size: 150, map: soniaTexture, blending: THREE.AdditiveBlending, depthTest: false, transparent : true});
     var ianGeometry = new THREE.Geometry();
     var ianVertex = new THREE.Vector3();
     ianVertex.x = -500;
@@ -43,7 +43,7 @@ function init() {
 
     var soniaGeometry = new THREE.Geometry();
     var soniaVertex = new THREE.Vector3();
-    soniaVertex.x = -500;
+    soniaVertex.x = 500;
     soniaVertex.y = 100;
     soniaVertex.z = 1;
     soniaGeometry.vertices.push(soniaVertex);
@@ -71,7 +71,6 @@ function init() {
         side: THREE.BackSide
     } );
     cubeMaterial.uniforms[ "tCube" ].value = textureEquirec;
-    // Skybox
     cubeMesh = new THREE.Mesh( new THREE.BoxGeometry( 100, 100, 100 ), equirectMaterial );
     sceneCube.add( cubeMesh );
     //
@@ -79,8 +78,10 @@ function init() {
     sphereMaterial = new THREE.MeshLambertMaterial( { envMap: textureEquirec } );
     sphereMesh = new THREE.Mesh( geometry, sphereMaterial );
     sphereMesh.position.x = -500;
+    sphereMesh.position.y = -100;
     sphereMesh2 = new THREE.Mesh( geometry, sphereMaterial );
     sphereMesh2.position.x = 500;
+    sphereMesh2.position.y = -100;
     scene.add( sphereMesh );
     scene.add( sphereMesh2 );
 
