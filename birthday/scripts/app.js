@@ -3,6 +3,7 @@ var cameraCube, sceneCube;
 var textureEquirec, textureSphere;
 var cubeMesh, sphereMesh, sphereMesh2;
 var sphereMaterial;
+var ianTexture, soniaTexture;
 init();
 animate();
 function init() {
@@ -27,6 +28,18 @@ function init() {
     textureEquirec.minFilter = THREE.LinearMipMapLinearFilter;
     textureSphere = textureLoader.load( "textures/metal.jpg" );
     textureSphere.mapping = THREE.SphericalReflectionMapping;
+
+    ianTexture = textureLoader.load( "textures/ian.png" );
+    soniaTexture = textureLoader.load( "textures/sonia.png" );
+
+    var ianMaterial = new THREE.SpriteMaterial({ map: ianTexture, blending: THREE.AdditiveBlending, depthTest: false, transparent : true });
+    var soniaMaterial = new THREE.SpriteMaterial({ map: soniaTexture, blending: THREE.AdditiveBlending, depthTest: false, transparent : true });
+
+    var ian = new THREE.Sprite (ianMaterial);
+    var sonia = new THREE.Sprite (soniaMaterial);
+    scene.add(ian);
+    scene.add(sonia);
+
     // Materials
 
     var equirectShader = THREE.ShaderLib[ "equirect" ];
@@ -54,9 +67,9 @@ function init() {
     var geometry = new THREE.SphereGeometry( 200.0, 24, 24 );
     sphereMaterial = new THREE.MeshLambertMaterial( { envMap: textureEquirec } );
     sphereMesh = new THREE.Mesh( geometry, sphereMaterial );
-    sphereMesh.position.x = -25;
+    sphereMesh.position.x = -500;
     sphereMesh2 = new THREE.Mesh( geometry, sphereMaterial );
-    sphereMesh2.position.x = 25;
+    sphereMesh2.position.x = 500;
     scene.add( sphereMesh );
     scene.add( sphereMesh2 );
 
