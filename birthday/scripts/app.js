@@ -8,14 +8,16 @@ var cubeMesh, sphereMesh, sphereMesh2;
 var sphereMaterial;
 var ianTexture, soniaTexture, ian, sonia;
 var start = Date.now();
+var birthday;
+
 init();
 animate();
 function init() {
     app.audio = document.getElementsByTagName('audio');
-    console.log(app.audio)
+    console.log(app.audio);
     // CAMERAS
     camera = new THREE.PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 1, 100000 );
-    camera.position.set( 0, 0, 1000 );
+    camera.position.set( 0, 0, 1200 );
     cameraCube = new THREE.PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 1, 100000 );
     controls = new THREE.OrbitControls( camera );
     controls.minDistance = 500;
@@ -30,17 +32,16 @@ function init() {
     // dirLight.position.set( 0, 1, 0 ).normalize();
     // scene.add( dirLight );
 
-    var pointLightFront = new THREE.PointLight( 0x0000ff, 30, 400 );
-    pointLightFront.position.set( 0, 300, 200 );
+    var pointLightFront = new THREE.PointLight( 0x0000ff, 50, 600 );
+    pointLightFront.position.set( 100, 300, 200 );
     scene.add( pointLightFront );
 
-    var pointLightBack = new THREE.PointLight( 0x00ff00, 30, 400 );
+    var pointLightBack = new THREE.PointLight( 0x00ff00, 30, 500 );
     pointLightBack.position.set( 0, 300, -200 );
     scene.add( pointLightBack );
 
-
-    var pointLightBottom = new THREE.PointLight( 0xff0000, 20, 400 );
-    pointLightBottom.position.set( 0, -100, 0 );
+    var pointLightBottom = new THREE.PointLight( 0xff0000, 20, 450 );
+    pointLightBottom.position.set( 100, -100, 0 );
     scene.add( pointLightBottom );
 
     var pointLightLeft = new THREE.PointLight( 0xffff00, 10, 400 );
@@ -53,7 +54,7 @@ function init() {
 
     // Textures
     var textureLoader = new THREE.TextureLoader();
-    textureEquirec = textureLoader.load( "textures/sikkim.jpg" );
+    textureEquirec = textureLoader.load( "textures/sikkim2.jpg" );
     textureEquirec.mapping = THREE.EquirectangularReflectionMapping;
     textureEquirec.magFilter = THREE.LinearFilter;
     textureEquirec.minFilter = THREE.LinearMipMapLinearFilter;
@@ -87,11 +88,11 @@ function init() {
     // sonia = new THREE.Points (soniaGeometry, soniaMaterial);
 
     ian = new THREE.Sprite( ianMaterial );
-    ian.scale.set(175, 225, 0);
-    ian.position.set(500,210,1);
+    ian.scale.set(175, 275, 0);
+    ian.position.set(525,175,0);
     sonia = new THREE.Sprite( soniaMaterial );
-    sonia.scale.set(175, 225, 0);
-    sonia.position.set(-500,210,1);
+    sonia.scale.set(175, 275, 0);
+    sonia.position.set(-525,175,0);
 
     scene.add(ian);
     scene.add(sonia);
@@ -100,12 +101,12 @@ function init() {
 
     loader.load( 'fonts/helvetiker_regular.typeface.json', function ( font ) {
 
-        var textGeo = new THREE.TextGeometry( "HAPPY BIRTHDAY!", {
+        var textGeo = new THREE.TextGeometry( "HAPPY BIRTHDAY IAN !", {
 
             font: font,
 
             size: 50,
-            height: 50,
+            height: 100,
             curveSegments: 12,
 
             bevelThickness: 1,
@@ -116,8 +117,8 @@ function init() {
 
         var textMaterial = new THREE.MeshPhongMaterial( { color: 0x666666 } );
 
-        var birthday = new THREE.Mesh( textGeo, textMaterial );
-        birthday.position.set( -300, 100, 10 );
+        birthday = new THREE.Mesh( textGeo, textMaterial );
+        birthday.position.set( -350, 100, -50 );
 
         scene.add( birthday );
 
@@ -150,10 +151,10 @@ function init() {
     sphereMaterial.needsUpdate = true;
     sphereMesh = new THREE.Mesh( geometry, sphereMaterial );
     sphereMesh.position.x = -500;
-    sphereMesh.position.y = -100;
+    sphereMesh.position.y = -150;
     sphereMesh2 = new THREE.Mesh( geometry, sphereMaterial );
     sphereMesh2.position.x = 500;
-    sphereMesh2.position.y = -100;
+    sphereMesh2.position.y = -150;
     scene.add( sphereMesh );
     scene.add( sphereMesh2 );
 
@@ -165,6 +166,7 @@ function init() {
     document.body.appendChild( renderer.domElement );
     //
 }
+
 
 function onKeyDown(e) {
     switch (e.which) {
@@ -195,13 +197,18 @@ function animate() {
     render();
     controls.update();
 }
+
 function render() {
+    var x = camera.position.x;
+    var z = camera.position.z;
+    camera.position.x = x * Math.cos(0.003) - z * Math.sin(0.003);
+    camera.position.z = z * Math.cos(0.003) + x * Math.sin(0.003);
     var timer = Date.now() - start;
     camera.lookAt( scene.position );
     // sphereMesh.position.y = Math.abs( Math.sin( timer * 0.002 ) ) * 150;
     // sphereMesh2.position.y = Math.abs( Math.sin( timer * 0.002 ) ) * 150;
-    ian.position.y = 200 + (Math.abs( Math.cos( timer * 0.002 ) ) * 150);
-    sonia.position.y = 200 + (Math.abs( Math.sin( timer * 0.002 ) ) * 150);
+    ian.position.y = 185 + (Math.abs( Math.cos( timer * 0.002 ) ) * 150);
+    sonia.position.y = 185 + (Math.abs( Math.sin( timer * 0.002 ) ) * 150);
     cameraCube.rotation.copy( camera.rotation );
     renderer.render( sceneCube, cameraCube );
     renderer.render( scene, camera );
