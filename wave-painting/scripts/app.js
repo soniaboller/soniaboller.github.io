@@ -20,6 +20,7 @@ var windowHalfY = window.innerHeight / 2;
     renderer.setSize(window.innerWidth, window.innerHeight);
     renderer.autoClearColor = false;
     container.appendChild(renderer.domElement);
+// var controls = new THREE.OrbitControls(camera, renderer.domElement);
     // var stats = new Stats();
     // stats.showPanel( 0 );
     // document.body.appendChild( stats.dom );
