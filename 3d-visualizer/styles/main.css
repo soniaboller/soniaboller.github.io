@@ -1,24 +1,92 @@
 body {
-    background:#000;
-    padding:0;
-    margin:0;
-    font-weight: bold;
-    overflow:hidden;
+    padding: 0;
+    margin: 0;
+    font: 16px Helvetica, Arial, sans-serif;
+    font-weight:100;
+    overflow: hidden;
+    background-color: #000;
+    color: white;
 }
 
-/*.dg li:not(.folder){*/
-    /*background: transparent !important;*/
-    /*border-bottom: none !important;*/
-/*}*/
-/*.dg.main .close-button{*/
-    /*background: transparent !important;*/
+#notification {
+    z-index: 10000;
+    /*display: none;*/
+    margin: 0 auto;
+    width: 33%;
+    text-align: center;
+    letter-spacing: 0.15rem;
+    padding-top: 45vh;
+    color: #fff;
+    font-weight: 100;
+}
+
+.hidden{
+    display:none;
+    visibility: hidden;
+}
+
+.dg .ac{
+    width: auto; !important;
+}
+
+.dg.a {
+    width: auto; !important;
+
+}
+.dg .c .slider-fg {
+    background: #fff !important;
+}
+
+.dg .cr.number {
+    border-left: none !important;
+}
+
+.dg .cr.color {
+    border-left: none !important;
+}
+
+.dg .cr.boolean {
+    border-left: none !important;
+}
+
+.dg .cr.number input[type=text] {
+    color: #fff !important;
+}
+
+.dg li:not(.folder){
+    background: transparent !important;
+    border-bottom: none !important;
+}
+
+.dg.main .close-button{
+    background: transparent !important;
+}
+
+.dg.main .close-button.drag, .dg.main:hover .close-button {
+    background: transparent !important;
+}
+
+
+/*.dg .c .slider {*/
+/*background: transparent !important;*/
+/*cursor: ew-resize;*/
 /*}*/
 
-/*.dg.a{*/
-    /*margin: 0 !important;*/
-    /*width: 125px !important;*/
-/*}*/
+.dg .slider {
+    margin-left: 0 !important;
+}
 
-/*.close-button{*/
-    /*visibility: hidden;*/
-/*}*/
+.dg.main .close-button {
+    text-align:right !important;
+}
+
+.dg li.title{
+    background: transparent url(data:image/gif;base64,R0lGODlhBQAFAJEAAP////Pz8////////yH5BAEAAAIALAAAAAAFAAUAAAIIlI+hKgFxoCgAOw==) 6px 10px no-repeat !important;
+}
+
+.dg .closed li.title {
+    background: transparent url(data:image/gif;base64,R0lGODlhBQAFAJEAAP////Pz8////////yH5BAEAAAIALAAAAAAFAAUAAAIIlGIWqMCbWAEAOw==) 6px 10px no-repeat !important;
+}
+.dg.main .close-button {
+    position:relative; !important;
+}

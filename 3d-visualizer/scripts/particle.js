@@ -45,13 +45,14 @@ var GuiControls = function(){
 var matrix = new GuiControls();
 
 var gui = new dat.GUI();
-gui.add(matrix, 'spacing', 0, 50).step(0.1).name('Spacing');
-gui.add(matrix, 'angle', 0, 25).step(0.1).name('Angle');
+gui.closed = true;
+gui.add(matrix, 'spacing', 0, 50).step(0.1).name('Particle Spacing');
+gui.add(matrix, 'angle', 0, 25).step(0.1).name('Particle Angle');
 gui.add(matrix, 'animationSpeed', 0.0000001, 0.01).step(0.00001).name('Animation Speed');
-gui.add(matrix, 'intensity', 0.5, 5).step(0.1).name('Intensity');
-gui.add(matrix, 'zoomSpeed', 0.001, 0.1).step(0.001).name('Zoom Speed');
+gui.add(matrix, 'intensity', 0.5, 5).step(0.1).name('Reaction Intensity');
 gui.add(matrix, 'colorIntensity', 0.5, 5).step(1).name('Color Intensity');
-gui.add(matrix, 'rotationSpeed', 0, 0.1).step(0.000005).name('Rotation Speed');
+gui.add(matrix, 'zoomSpeed', 0.001, 0.1).step(0.001).name('Zoom Speed');
+gui.add(matrix, 'rotationSpeed', 0, 0.1).step(0.000005).name('Z-index Rotation Speed');
 
 var stats = new Stats();
 stats.showPanel( 0 );

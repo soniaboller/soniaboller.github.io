@@ -4,6 +4,9 @@ var buffer;
 var analyser;
 
 window.onload = function () {
+    var notification = document.getElementById('notification');
+    notification.addEventListener('click', getMicInput, false);
+
     // app.init();
     // console.log('audio loader connected');
 
@@ -17,6 +20,7 @@ window.onload = function () {
     }
 
     function onDrop(e) {
+        notification.classList.add('hidden');
         e.stopPropagation();
         e.preventDefault();
         var droppedFiles = e.dataTransfer.files;
@@ -42,7 +46,6 @@ window.onload = function () {
         app.animate();
     }
 
-    // getMicInput();
     function getMicInput(){
         navigator.mediaDevices.getUserMedia({audio: true}).then(function(stream) {
             app.ctx = new (window.AudioContext || window.webkitAudioContext)();
@@ -51,6 +54,7 @@ window.onload = function () {
             analyser.fftSize = 2048;
             microphone = app.ctx.createMediaStreamSource(stream);
             microphone.connect(analyser);
+            notification.classList.add('hidden');
             app.animate();
         }).catch(function(err) {
             console.log('error', err)
