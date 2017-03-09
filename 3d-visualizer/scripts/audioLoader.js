@@ -4,6 +4,12 @@ var buffer;
 var analyser;
 
 window.onload = function () {
+
+    if(window.innerWidth < 780){
+        app.animate();
+        console.log('hit')
+    }
+
     var notification = document.getElementById('notification');
     notification.addEventListener('click', getMicInput, false);
 
@@ -47,7 +53,7 @@ window.onload = function () {
     }
 
     function getMicInput(){
-        navigator.mediaDevices.getUserMedia({audio: true}).then(function(stream) {
+        navigator.mediaDevices.getUserMedia({audio: true, video: false}).then(function(stream) {
             app.ctx = new (window.AudioContext || window.webkitAudioContext)();
             source = app.ctx.createBufferSource();
             analyser = app.ctx.createAnalyser();
