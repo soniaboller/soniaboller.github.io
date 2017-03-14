@@ -21,8 +21,9 @@ body {
 }
 
 .hidden{
-    display:none;
-    visibility: hidden;
+    /*visibility: hidden;*/
+    display: none;
+    opacity: 0;
 }
 
 .dg .ac{
