@@ -1,0 +1,36 @@
+body {
+  padding: 0;
+  margin: 0;
+  font: 16px Helvetica, Arial, sans-serif;
+  overflow: hidden;
+  background-color: #000;
+  color: white;
+}
+
+canvas{
+  width: 100vw;
+  height: 100vh;
+  z-index: 500;
+}
+.dg.a{
+  margin-right: 0 !important;
+}
+.dg .cr.number input[type=text] {
+  color: #fff !important;
+}
+.dg .c .slider-fg{
+  background: #fff !important;
+}
+.dg .cr.number{
+  border-left: 1px solid #fff !important;
+  background: transparent !important;
+  border: none !important;
+}
+.dg li:not(.folder){
+  background: transparent !important;
+  border-bottom: none !important;
+}
+.dg.main .close-button{
+  background: transparent !important;
+  text-align: right !important;
+}
