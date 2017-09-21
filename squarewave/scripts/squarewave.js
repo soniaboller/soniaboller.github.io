@@ -1,7 +1,7 @@
-let app = {};
+var app = app || {};
 $(document).ready(function() {
-    // console.log(app, 'from square');
     var xSeparation = 1.1, ySeparation = 1.1, xNum = 65, yNum = 65,
+     // var xSeparation = 1.1, ySeparation = 1.1, xNum = 45, yNum = 45,
         mouseX = 0, mouseY = 0,
         windowHalfX = window.innerWidth / 2,
         windowHalfY = window.innerHeight / 2;
@@ -22,35 +22,24 @@ $(document).ready(function() {
 
         camera = new THREE.PerspectiveCamera(fov, width / height, 1, 10000);
         camera.position.set(0, 0, 185);
-        // camera.position.set(0, 0, 75);
+        // camera.position.set(0, 0, 150);
 
         renderer.setClearColor(0x000000, 1);
-        // CHANGE THIS into a function with an event lisenter instead
-        window.addEventListener('resize', function () {
-            width = window.innerWidth;
-            height = window.innerHeight;
-            windowHalfX = window.innerWidth / 2;
-            windowHalfY = window.innerHeight / 2;
-            renderer.setSize(width, height);
-            camera.aspect = width / height;
-            camera.updateProjectionMatrix();
-        });
 
-        var PI2 = Math.PI * 2;
         particles = new Array();
 
         // move this into the particle generating loop for color changing, but prevents bottom tiles from being accessed for rotation
 
         var i = 0;
         for (var iy = 0; iy < yNum; iy++) {
-            var material = new THREE.SpriteMaterial({
-                color: 0xffffff
-            });
             for (var ix = 0; ix < xNum; ix++) {
+                var material = new THREE.SpriteMaterial({
+                    color: 0xffffff
+                });
                 var particle = particles[i++] = new THREE.Sprite(material);
                 particle.position.x = ix * xSeparation - (( xNum * xSeparation ) / 2);
                 particle.position.y = iy * ySeparation - (( yNum * ySeparation ) / 2);
-                // particle.position.z = 3 * Math.cos(ix);
+                // particle.position.z = 3 * Math.sin(ix);
                 scene.add(particle);
             }
         }
@@ -74,19 +63,37 @@ $(document).ready(function() {
             }
         }
 
+        function handleResize(){
+            width = window.innerWidth;
+            height = window.innerHeight;
+            windowHalfX = window.innerWidth / 2;
+            windowHalfY = window.innerHeight / 2;
+            renderer.setSize(width, height);
+            camera.aspect = width / height;
+            camera.updateProjectionMatrix();
+        }
+
         document.addEventListener('mousemove', onDocumentMouseMove, false);
         document.addEventListener('touchstart', onDocumentTouchStart, false);
         document.addEventListener('touchmove', onDocumentTouchMove, false);
-
+        window.addEventListener('resize', handleResize, false);
 
         var counter = 0;
         var count = 0;
 
         var GuiControls = function(){
             this.positionIntensity = 15;
-            this.positionSpeed = 5.6;
+            this.positionSpeed = 6;
             this.scaleSpeed = 3;
+            // this.positionIntensity = 5;
+            // this.positionSpeed = 8;
+            // this.scaleSpeed = 4;
             this.time = 60;
+            this.colorControl = 10;
+            this.default = true;
+            this.toggleRed = false;
+            this.toggleGreen = false;
+            this.toggleBlue = false;
         };
         var controls = new GuiControls();
         var gui = new dat.GUI();
@@ -95,29 +102,101 @@ $(document).ready(function() {
         gui.add(controls, 'positionSpeed', 0, 25).name('Position Speed');
         gui.add(controls, 'scaleSpeed', 0, 25).name('Scale Speed');
         gui.add(controls, 'time', 0, 120).name('Time Divider');
+        gui.add(controls, 'colorControl', 0, 25).name('Color Speed');
+        gui.add(controls, 'default').name('All White').listen().onChange(function(){
+            for (var j = 0; j < particles.length; j++) {
+                particle = particles[j];
+                particle.material.color.r = 1;
+                particle.material.color.g = 1;
+                particle.material.color.b = 1;
+            }
+            controls.default = true;
+            controls.toggleRed = false;
+            controls.toggleGreen = false;
+            controls.toggleBlue = false;
+        });
+        gui.add(controls, 'toggleRed').name('Red Emphasis').listen().onChange(function(){
+            for (var j = 0; j < particles.length; j++) {
+                particle = particles[j];
+                particle.material.color.r = Math.random();
+                particle.material.color.g = Math.random();
+                particle.material.color.b = Math.random();
+            }
+            controls.default = false;
+            controls.toggleRed = true;
+            controls.toggleGreen = false;
+            controls.toggleBlue = false;
+        });
+
+        gui.add(controls, 'toggleGreen').name('Green Emphasis').listen().onChange(function(){
+            for (var j = 0; j < particles.length; j++) {
+                particle = particles[j];
+                particle.material.color.r = Math.random();
+                particle.material.color.g = Math.random();
+                particle.material.color.b = Math.random();
+            }
+            controls.default = false;
+            controls.toggleRed = false;
+            controls.toggleGreen = true;
+            controls.toggleBlue = false;
+        });
+
+        gui.add(controls, 'toggleBlue').name('Blue Emphasis').listen().onChange(function(){
+            for (var j = 0; j < particles.length; j++) {
+                particle = particles[j];
+                particle.material.color.r = Math.random();
+                particle.material.color.g = Math.random();
+                particle.material.color.b = Math.random();
+            }
+            controls.default = false;
+            controls.toggleRed = false;
+            controls.toggleGreen = false;
+            controls.toggleBlue = true;
+        });
 
 
         function animate() {
             requestAnimationFrame(animate);
+            var timeFloatData = [];
+            if(app.audio || app.microphone){
+                timeFloatData = new Float32Array(analyser.fftSize);
+                analyser.getFloatTimeDomainData(timeFloatData);
+            }
             for (var j = 0; j < particles.length; j++) {
                 var time = (counter + j)/controls.time;
                 particle = particles[j];
-                particle.position.z = controls.positionIntensity * Math.sin(time * controls.positionSpeed);
                 particle.scale.x = particle.scale.y = (Math.sin(time  * controls.scaleSpeed));
-
-                // particle.material.color.r = Math.sin(particle.position.z / time)/10;
-                 // particle.material.color.g = Math.sin(particle.position.z / time);
-                // particle.material.color.b = Math.sin(time * 5) * Math.cos(j);
-                // particle.material.color.g = Math.sin(time * 4)* Math.cos(j);
-                // particle.material.color.r = Math.sin(time * 3)* Math.cos(j);
-
-                // console.log(particle.material.color.r)
-                // particle.color = rgba(0, 0, , 1)
-                // particle.material.rotation -= 0.0003;
+                if(app.audio || app.microphone){
+                    particle.position.z = controls.positionIntensity * Math.sin(timeFloatData[j] * controls.positionSpeed);
+                    if(controls.toggleRed){
+                        particle.material.color.r = Math.sin(particle.position.z * 10 / time * controls.colorControl);
+                    }
+                    else if(controls.toggleGreen){
+                        particle.material.color.g = Math.sin(particle.position.z * 10/ time * controls.colorControl);
+                    }
+                    else if(controls.toggleBlue){
+                        particle.material.color.b = Math.sin(particle.position.z * 10/ time * controls.colorControl);
+                    }
+                }
+                else{
+                    particle.position.z = controls.positionIntensity * Math.sin(time * controls.positionSpeed);
+                    if(controls.toggleRed){
+                        particle.material.color.r = Math.sin(particle.position.z / controls.colorControl)* 1.25;
+                    }
+                    else if(controls.toggleGreen){
+                        particle.material.color.g = Math.sin(particle.position.z / controls.colorControl)* 1.25;
+                    }
+                    else if(controls.toggleBlue){
+                        particle.material.color.b = Math.sin(particle.position.z / controls.colorControl) * 1.5;
+                    }
+                }
             }
 
-            camera.position.x = ( mouseX - camera.position.x ) * 0.05;
-            camera.position.y = ( -mouseY - camera.position.y ) * 0.075;
+            camera.position.x += 4 * Math.cos(time) +( mouseX - camera.position.x ) * 0.05;
+            camera.position.y += 4 * Math.cos(time) +( -mouseY - camera.position.y ) * 0.075;
+
+            // camera.position.x = ( mouseX - camera.position.x ) * 0.05;
+            // camera.position.y = ( -mouseY - camera.position.y ) * 0.075;
             camera.lookAt(scene.position);
             renderer.render(scene, camera);
             counter++;
