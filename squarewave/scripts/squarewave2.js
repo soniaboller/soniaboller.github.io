@@ -1,7 +1,8 @@
 var app = app || {};
+app.moving= true;
 $(document).ready(function() {
-    var xSeparation = 1.1, ySeparation = 1.1, xNum = 65, yNum = 65,
-     // var xSeparation = 1.1, ySeparation = 1.1, xNum = 45, yNum = 45,
+    // var xSeparation = 1.1, ySeparation = 1.1, xNum = 65, yNum = 65,
+     var xSeparation = 1.25, ySeparation = 1.25, xNum = 45, yNum = 45,
         mouseX = 0, mouseY = 0,
         windowHalfX = window.innerWidth / 2,
         windowHalfY = window.innerHeight / 2;
@@ -21,8 +22,8 @@ $(document).ready(function() {
         document.body.appendChild(app.renderer.domElement);
 
         camera = new THREE.PerspectiveCamera(fov, width / height, 1, 10000);
-        camera.position.set(0, 0, 185);
-        // camera.position.set(0, 0, 150);
+        // camera.position.set(0, 0, 185);
+        camera.position.set(0, 0, 150);
 
         renderer.setClearColor(0x000000, 1);
 
@@ -76,31 +77,35 @@ $(document).ready(function() {
         document.addEventListener('mousemove', onDocumentMouseMove, false);
         document.addEventListener('touchstart', onDocumentTouchStart, false);
         document.addEventListener('touchmove', onDocumentTouchMove, false);
+        document.addEventListener('keydown', onKeyDown, false);
         window.addEventListener('resize', handleResize, false);
 
         var counter = 0;
         var count = 0;
 
         var GuiControls = function(){
-            this.positionIntensity = 15;
-            this.positionSpeed = 6;
-            this.scaleSpeed = 3;
-            // this.positionIntensity = 5;
-            // this.positionSpeed = 8;
-            // this.scaleSpeed = 4;
+            // this.positionIntensity = 15;
+            // this.positionSpeed = 6;
+            // this.scaleSpeed = 3;
+            // this.colorControl = 10;
+            this.positionIntensity = 5;
+            this.positionSpeed = 8;
+            this.scaleSpeed = 4;
+            this.colorControl = 3;
             this.time = 60;
-            this.colorControl = 10;
             this.default = true;
             this.toggleRed = false;
             this.toggleGreen = false;
             this.toggleBlue = false;
+            this.square = true;
+            this.tube = false;
         };
         var controls = new GuiControls();
         var gui = new dat.GUI();
         gui.closed = true;
         gui.add(controls, 'positionIntensity', 0, 25).name('Position Intensity');
         gui.add(controls, 'positionSpeed', 0, 25).name('Position Speed');
-        gui.add(controls, 'scaleSpeed', 0, 25).name('Scale Speed');
+        gui.add(controls, 'scaleSpeed', 0, 15).name('Scale Speed');
         gui.add(controls, 'time', 0, 120).name('Time Divider');
         gui.add(controls, 'colorControl', 0, 25).name('Color Speed');
         gui.add(controls, 'default').name('All White').listen().onChange(function(){
@@ -154,6 +159,37 @@ $(document).ready(function() {
             controls.toggleBlue = true;
         });
 
+        function onKeyDown(e) {
+            switch (e.which) {
+                case 32:
+                    if (app.play) {
+                        app.audio.pause();
+                        app.play = false;
+                    } else {
+                        app.audio.play();
+                        app.play = true;
+                    }
+                    break;
+                case 70:
+                    if(app.moving){
+                        camera.position.x = camera.position.x;
+                        camera.position.y = camera.position.y;
+                        app.moving = false;
+                    }
+                    else{
+                        app.moving = true;
+                    }
+                    break;
+                case 49:
+                    controls.square = true;
+                    controls.tube = false;
+                    break;
+                case 50:
+                    controls.square = false;
+                    controls.tube = true;
+                }
+        }
+
 
         function animate() {
             requestAnimationFrame(animate);
@@ -165,9 +201,20 @@ $(document).ready(function() {
             for (var j = 0; j < particles.length; j++) {
                 var time = (counter + j)/controls.time;
                 particle = particles[j];
-                particle.scale.x = particle.scale.y = (Math.sin(time  * controls.scaleSpeed));
                 if(app.audio || app.microphone){
-                    particle.position.z = controls.positionIntensity * Math.sin(timeFloatData[j] * controls.positionSpeed);
+                    let scale = (Math.sin(timeFloatData[j]/2 * controls.scaleSpeed));
+                    if(controls.square){
+                        if(scale != 0){
+                            particle.scale.x = particle.scale.y = (Math.sin(timeFloatData[j]/2 * controls.scaleSpeed));
+                        }
+                        particle.position.z = controls.positionIntensity * Math.sin(time * controls.positionSpeed);
+                    }
+                    else if(controls.tube){
+                        if(scale != 0){
+                            particle.scale.y = particle.scale.y = (Math.sin(timeFloatData[j]/2 * controls.scaleSpeed));
+                        }
+                        particle.position.x = controls.positionIntensity * Math.sin(time * controls.positionSpeed);
+                    }
                     if(controls.toggleRed){
                         particle.material.color.r = Math.sin(particle.position.z * 10 / time * controls.colorControl);
                     }
@@ -179,6 +226,10 @@ $(document).ready(function() {
                     }
                 }
                 else{
+                    let scale = (Math.sin(time  * controls.scaleSpeed));
+                        if(scale != 0){
+                            particle.scale.x = particle.scale.y = (Math.sin(time  * controls.scaleSpeed));
+                        }
                     particle.position.z = controls.positionIntensity * Math.sin(time * controls.positionSpeed);
                     if(controls.toggleRed){
                         particle.material.color.r = Math.sin(particle.position.z / controls.colorControl)* 1.25;
@@ -192,8 +243,10 @@ $(document).ready(function() {
                 }
             }
 
-            camera.position.x += 4 * Math.cos(time) +( mouseX - camera.position.x ) * 0.05;
-            camera.position.y += 4 * Math.cos(time) +( -mouseY - camera.position.y ) * 0.075;
+            if(app.moving){
+            camera.position.x += 2 * Math.cos(time) +( mouseX - camera.position.x ) * 0.05;
+            camera.position.y += 2 * Math.cos(time) +( -mouseY - camera.position.y ) * 0.075;
+        }
 
             // camera.position.x = ( mouseX - camera.position.x ) * 0.05;
             // camera.position.y = ( -mouseY - camera.position.y ) * 0.075;
@@ -205,3 +258,5 @@ $(document).ready(function() {
     }
 
 });
+
+
