@@ -56,6 +56,6 @@ window.onload = function () {
             console.log('error', err)
         });
     }
-    // getMicInput()
+    getMicInput()
     // app.animate()
 };
