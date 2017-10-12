@@ -4,6 +4,9 @@ var buffer;
 var analyser;
 
 window.onload = function () {
+    var info = $('#info');
+    info.velocity('fadeIn', { delay: 150, duration: 1500 });
+    info.on('click', getMicInput);
     // app.init();
     // console.log('audio loader connected');
 
@@ -11,6 +14,7 @@ window.onload = function () {
     window.addEventListener('dragover', onDrag, false);
 
     function onDrag(e) {
+        info.velocity('fadeOut', { duration: 150 });
         e.stopPropagation();
         e.preventDefault();
         return false;
@@ -50,12 +54,12 @@ window.onload = function () {
             analyser.fftSize = 2048;
             app.microphone = app.ctx.createMediaStreamSource(stream);
             app.microphone.connect(analyser);
-            // info.velocity('fadeOut', { duration: 150 });
+            info.velocity('fadeOut', { duration: 150 });
             // app.animate();
         }).catch(function(err) {
             console.log('error', err)
         });
     }
-    getMicInput()
+    // getMicInput()
     // app.animate()
 };
