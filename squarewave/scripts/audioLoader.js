@@ -50,7 +50,7 @@ window.onload = function () {
             analyser.fftSize = 2048;
             app.microphone = app.ctx.createMediaStreamSource(stream);
             app.microphone.connect(analyser);
-//             info.velocity('fadeOut', { duration: 150 });
+            // info.velocity('fadeOut', { duration: 150 });
             // app.animate();
         }).catch(function(err) {
             console.log('error', err)
