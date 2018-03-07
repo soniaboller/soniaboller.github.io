@@ -6,5 +6,5 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Main github repository for this project can be found at https://github.com/soniaboller/audible-visuals  
 [Shaders](https://soniaboller.github.io/shaders/) : Shader experiments  
 [Color Theory](https://soniaboller.github.io/color-theory/) : Color game built with jQuery  
-[Wave Painting](https://soniaboller.github.io/wave-painting/) : Pick a color and drag your mouse to paint in a wave-y circular motion  
-[Tic Tac Nope](https://soniaboller.github.io/tictactoe/) : Tic Tac Toe 
+[Wave Painting](https://soniaboller.github.io/wave-painting/) : Enable mic input, pick a color and watch a circular mandala be drawn in the browser that reacts to sound input.
+[Tic Tac Nope](https://soniaboller.github.io/tictactoe/) : Election themed Tic Tac Toe 
