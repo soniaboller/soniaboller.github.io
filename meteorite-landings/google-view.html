@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <title>Meteor Landings (Google Maps)</title>
+  <link rel="stylesheet" type="text/css" href="./styles/styles.css">
+     <script src="scripts/jquery.min.js"></script>
+     <script async defer src="http://maps.googleapis.com/maps/api/js?key=AIzaSyAdj4X8GhlGCvCOXXJrRB_BbzpnMjnE33Q&language=en"></script>
+  </head>
+  <body>
+    <div id="loading"><p>loading...</p></div>
+    <div id="map"></div>
+    <script>
+
+    $.ajax({
+
+            url : 'https://data.nasa.gov/resource/y77d-th95.json?$limit=50000',
+            type : 'GET',
+            dataType:'json',
+            success : function(data) {
+                $('#loading').css('display','none');
+                initMap(data);
+            },
+            error : function(error)
+            {
+                $('#loading').text(error);
+                console.log(error)
+            }
+        });
+    var infowindow;
+    function initMap(data) {
+      var map = new google.maps.Map(document.getElementById('map'), {
+        zoom: 3,
+        center: {lat: 16.190281, lng: -18.154772}
+      });
+      setMarkers(map, data);
+      infowindow = new google.maps.InfoWindow();
+    }
+
+    function setMarkers(map, data) {
+      for (let i = 0; i < data.length; i ++){
+          let meteorite = data[i];
+          if(meteorite.geolocation != null){
+            let marker = new google.maps.Marker({
+                position: {lat: meteorite.geolocation.coordinates[1], lng: meteorite.geolocation.coordinates[0]},
+                title: meteorite.name,
+                map: map
+            });
+            marker.addListener('click', (function(marker, i) {
+                return function() {
+                    let year = new Date(meteorite.year).getFullYear()
+                    infowindow.setContent(meteorite.name + ' - ' + year);
+                    infowindow.open(map, marker);
+                }
+            })(marker, i));
+          }
+        }
+    } 
+
+    </script>
+  </body>
+</html>
