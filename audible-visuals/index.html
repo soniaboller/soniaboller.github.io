@@ -11,7 +11,7 @@
     <script src="scripts/get-float-time-domain-data.js"></script>
     <script src="scripts/dat.gui.min.js"></script>
     <script src="scripts/stats.min.js"></script>
-    <script src="scripts/audioLoader.js"></script>
+    <script src="scripts/audioLoader2.js"></script>
     <script src="scripts/OrbitControls.js"></script>
     <script src="scripts/CanvasRenderer.js"></script>
     <script src="scripts/Projector.js"></script>
@@ -25,9 +25,12 @@
     'SPACE' toggles playback <br>
     'h' toggles extra controls <br>
 </p>
-<p id="notification"> drag and drop an mp3 <br>
-    (press 'K' to hide keyboard controls) <br>
-</p>
+ <div id="info">
+    <h1>Audible Visuals</h1>
+    <h3>click for mic input or drag an mp3 into the browser window<br>
+    (press 'K' to hide keyboard controls)
+    </h3>
+  </div>
 <script>
     var nav = true;
     var inst = true;
@@ -55,8 +58,8 @@
         }
     }
     document.addEventListener('keydown', onKeyDown, false);
-    $('#notification').velocity('fadeIn', { delay: 150, duration: 1500 });
+
 </script>
-<script src="scripts/spiral.js"></script>
+<script src="scripts/spiral2.js"></script>
 </body>
 </html>
